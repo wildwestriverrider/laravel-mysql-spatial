@@ -40,9 +40,9 @@ trait SpatialTrait
      * protected $spatialFields = [];
      */
 
-    public $geometries = [];
+    public array $geometries = [];
 
-    protected $stRelations = [
+    protected array $stRelations = [
         'within',
         'crosses',
         'contains',
@@ -53,7 +53,7 @@ trait SpatialTrait
         'touches',
     ];
 
-    protected $stOrderFunctions = [
+    protected array $stOrderFunctions = [
         'distance',
         'distance_sphere',
     ];
@@ -70,7 +70,7 @@ trait SpatialTrait
         return new Builder($query);
     }
 
-    protected function newBaseQueryBuilder()
+    protected function newBaseQueryBuilder(): BaseBuilder
     {
         $connection = $this->getConnection();
 
@@ -81,7 +81,7 @@ trait SpatialTrait
         );
     }
 
-    protected function performInsert(EloquentBuilder $query, array $options = [])
+    protected function performInsert(EloquentBuilder $query, array $options = []): bool
     {
         foreach ($this->attributes as $key => $value) {
             if ($value instanceof GeometryInterface) {
@@ -99,7 +99,7 @@ trait SpatialTrait
         return $insert; //Return the result of the parent insert
     }
 
-    public function setRawAttributes(array $attributes, $sync = false)
+    public function setRawAttributes(array $attributes, $sync = false): SpatialTrait
     {
         $spatial_fields = $this->getSpatialFields();
 
@@ -121,7 +121,7 @@ trait SpatialTrait
         }
     }
 
-    public function isColumnAllowed($geometryColumn)
+    public function isColumnAllowed($geometryColumn): bool
     {
         if (!in_array($geometryColumn, $this->getSpatialFields())) {
             throw new SpatialFieldsNotDefinedException();

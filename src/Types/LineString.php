@@ -27,7 +27,7 @@ class LineString extends PointCollection
         return static::fromString($wktArgument, $srid);
     }
 
-    public static function fromString($wktArgument, $srid = 0)
+    public static function fromString($wktArgument, $srid = 0): static
     {
         $pairs = explode(',', trim($wktArgument));
         $points = array_map(function ($pair) {
@@ -63,9 +63,9 @@ class LineString extends PointCollection
     /**
      * Convert to GeoJson LineString that is jsonable to GeoJSON.
      *
-     * @return \GeoJson\Geometry\LineString
+     * @return \GeoJson\Geometry\GeometryCollection
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): \GeoJson\Geometry\GeometryCollection
     {
         $points = [];
         foreach ($this->items as $point) {

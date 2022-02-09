@@ -40,7 +40,7 @@ class Polygon extends MultiLineString
      *
      * @return \GeoJson\Geometry\Polygon
      */
-    public function jsonSerialize()
+    public function jsonSerialize() : \GeoJson\Geometry\GeometryCollection
     {
         $linearRings = [];
         foreach ($this->items as $lineString) {

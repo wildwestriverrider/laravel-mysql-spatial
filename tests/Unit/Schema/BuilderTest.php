@@ -17,6 +17,7 @@ class BuilderTest extends BaseTestCase
 
         $mock = Mockery::mock(Builder::class, [$connection]);
         $mock->makePartial()->shouldAllowMockingProtectedMethods();
+
         $blueprint = $mock->createBlueprint('test', function () {
         });
 

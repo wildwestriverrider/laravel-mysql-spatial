@@ -27,7 +27,7 @@ class MultiPoint extends PointCollection
         return static::fromString($wktArgument, $srid);
     }
 
-    public static function fromString($wktArgument, $srid = 0)
+    public static function fromString($wktArgument, $srid = 0): static
     {
         $matches = [];
         preg_match_all('/\(\s*(\d+\s+\d+)\s*\)/', trim($wktArgument), $matches);
@@ -69,7 +69,7 @@ class MultiPoint extends PointCollection
      *
      * @return \GeoJson\Geometry\MultiPoint
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): \GeoJson\Geometry\GeometryCollection
     {
         $points = [];
         foreach ($this->items as $point) {

@@ -1,10 +1,10 @@
 <?php
 
 use Grimzy\LaravelMysqlSpatial\SpatialServiceProvider;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\DB;
-use Laravel\BrowserKitTesting\TestCase as BaseTestCase;
 
-abstract class IntegrationBaseTestCase extends BaseTestCase
+abstract class IntegrationBaseTestCase extends \Orchestra\Testbench\TestCase
 {
     protected $after_fix = false;
     protected $migrations = [];
@@ -12,22 +12,22 @@ abstract class IntegrationBaseTestCase extends BaseTestCase
     /**
      * Boots the application.
      *
-     * @return \Illuminate\Foundation\Application
+     * @return Application
      */
-    public function createApplication()
+    public function createApplication(): Application
     {
         $app = require __DIR__.'/../../vendor/laravel/laravel/bootstrap/app.php';
         $app->register(SpatialServiceProvider::class);
 
         $app->make('Illuminate\Contracts\Console\Kernel')->bootstrap();
 
-        $app['config']->set('database.default', 'mysql');
-        $app['config']->set('database.connections.mysql.host', env('DB_HOST'));
-        $app['config']->set('database.connections.mysql.port', env('DB_PORT'));
-        $app['config']->set('database.connections.mysql.database', env('DB_DATABASE'));
-        $app['config']->set('database.connections.mysql.username', env('DB_USERNAME'));
-        $app['config']->set('database.connections.mysql.password', env('DB_PASSWORD'));
-        $app['config']->set('database.connections.mysql.modes', [
+        config()->set('database.default', 'mysql');
+        config()->set('database.connections.mysql.host', env('DB_HOST'));
+        config()->set('database.connections.mysql.port', env('DB_PORT'));
+        config()->set('database.connections.mysql.database', env('DB_DATABASE'));
+        config()->set('database.connections.mysql.username', env('DB_USERNAME'));
+        config()->set('database.connections.mysql.password', env('DB_PASSWORD'));
+        config()->set('database.connections.mysql.modes', [
             'ONLY_FULL_GROUP_BY',
             'STRICT_TRANS_TABLES',
             'NO_ZERO_IN_DATE',
@@ -44,7 +44,7 @@ abstract class IntegrationBaseTestCase extends BaseTestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -59,7 +59,7 @@ abstract class IntegrationBaseTestCase extends BaseTestCase
         //});
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         $this->onMigrations(function ($migrationClass) {
             (new $migrationClass())->down();

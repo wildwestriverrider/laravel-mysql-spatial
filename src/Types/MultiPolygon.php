@@ -34,7 +34,7 @@ class MultiPolygon extends GeometryCollection
         }, $this->items));
     }
 
-    public static function fromString($wktArgument, $srid = 0)
+    public static function fromString($wktArgument, $srid = 0): static
     {
         $parts = preg_split('/(\)\s*\)\s*,\s*\(\s*\()/', $wktArgument, -1, PREG_SPLIT_DELIM_CAPTURE);
         $polygons = static::assembleParts($parts);
@@ -89,7 +89,7 @@ class MultiPolygon extends GeometryCollection
         return $polygons;
     }
 
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->validateItemType($value);
 
@@ -127,7 +127,7 @@ class MultiPolygon extends GeometryCollection
      *
      * @return \GeoJson\Geometry\MultiPolygon
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): \GeoJson\Geometry\GeometryCollection
     {
         $polygons = [];
         foreach ($this->items as $polygon) {

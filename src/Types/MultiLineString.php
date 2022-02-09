@@ -32,7 +32,7 @@ class MultiLineString extends GeometryCollection
         return sprintf('MULTILINESTRING(%s)', (string) $this);
     }
 
-    public static function fromString($wktArgument, $srid = 0)
+    public static function fromString($wktArgument, $srid = 0): static
     {
         $str = preg_split('/\)\s*,\s*\(/', substr(trim($wktArgument), 1, -1));
         $lineStrings = array_map(function ($data) {
@@ -49,7 +49,7 @@ class MultiLineString extends GeometryCollection
         }, $this->getLineStrings()));
     }
 
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->validateItemType($value);
 
@@ -83,7 +83,7 @@ class MultiLineString extends GeometryCollection
      *
      * @return \GeoJson\Geometry\MultiLineString
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): \GeoJson\Geometry\GeometryCollection
     {
         $lineStrings = [];
 

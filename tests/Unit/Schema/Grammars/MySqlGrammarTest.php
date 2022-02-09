@@ -186,13 +186,13 @@ class MySqlGrammarBaseTest extends BaseTestCase
         $this->assertEquals($expectedSql, $dropStatements[4]);
     }
 
-    /**
-     * @return Connection
-     */
-    protected function getConnection()
-    {
-        return Mockery::mock(MysqlConnection::class);
-    }
+//    /**
+//     * @return Connection
+//     */
+//    protected function getConnection()
+//    {
+//        return Mockery::mock(MysqlConnection::class);
+//    }
 
     protected function getGrammar()
     {

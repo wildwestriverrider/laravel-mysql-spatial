@@ -9,14 +9,17 @@ class MysqlConnectionTest extends TestCase
 {
     private $mysqlConnection;
 
-    protected function setUp()
+    protected function setUp() : void
     {
+        $dsn = 'mysql:dbname=spatial_test;host=127.0.0.1;port=13306;';
+        $pdo = new PDO($dsn, 'root', '');
         $mysqlConfig = ['driver' => 'mysql', 'prefix' => 'prefix', 'database' => 'database', 'name' => 'foo'];
-        $this->mysqlConnection = new MysqlConnection(new PDOStub(), 'database', 'prefix', $mysqlConfig);
+        $this->mysqlConnection = new MysqlConnection($pdo, 'database', 'prefix', $mysqlConfig);
     }
 
     public function testGetSchemaBuilder()
     {
+        ray($this->mysqlConnection);
         $builder = $this->mysqlConnection->getSchemaBuilder();
 
         $this->assertInstanceOf(Builder::class, $builder);
