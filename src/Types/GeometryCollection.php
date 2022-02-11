@@ -146,7 +146,7 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
      *
      * @return \GeoJson\Geometry\GeometryCollection
      */
-    public function jsonSerialize(): \GeoJson\Geometry\GeometryCollection
+    public function jsonSerialize(): mixed
     {
         $geometries = [];
         foreach ($this->items as $geometry) {

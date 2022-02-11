@@ -9,6 +9,8 @@ use Grimzy\LaravelMysqlSpatial\Types\Polygon;
 
 class SridSpatialTest extends IntegrationBaseTestCase
 {
+    use \Illuminate\Foundation\Testing\RefreshDatabase;
+
     protected $migrations = [
         CreateLocationTable::class,
         UpdateLocationTable::class,

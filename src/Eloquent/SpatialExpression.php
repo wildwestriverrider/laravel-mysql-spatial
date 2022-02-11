@@ -8,7 +8,8 @@ class SpatialExpression extends Expression
 {
     public function getValue(): string
     {
-        return "ST_GeomFromText(?, ?, 'axis-order=long-lat')";
+        //return "ST_GeomFromText(?, ?, 'axis-order=long-lat')";
+        return "ST_GeomFromText(?, ?)";
     }
 
     public function getSpatialValue()

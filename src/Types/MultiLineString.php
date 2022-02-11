@@ -83,7 +83,7 @@ class MultiLineString extends GeometryCollection
      *
      * @return \GeoJson\Geometry\MultiLineString
      */
-    public function jsonSerialize(): \GeoJson\Geometry\GeometryCollection
+    public function jsonSerialize(): mixed
     {
         $lineStrings = [];
 

@@ -3,6 +3,7 @@
 namespace Grimzy\LaravelMysqlSpatial\Types;
 
 use GeoJson\GeoJson;
+use GeoJson\Geometry\LinearRing;
 use GeoJson\Geometry\Polygon as GeoJsonPolygon;
 use Grimzy\LaravelMysqlSpatial\Exceptions\InvalidGeoJsonException;
 
@@ -37,10 +38,8 @@ class Polygon extends MultiLineString
 
     /**
      * Convert to GeoJson Polygon that is jsonable to GeoJSON.
-     *
-     * @return \GeoJson\Geometry\Polygon
-     */
-    public function jsonSerialize() : \GeoJson\Geometry\GeometryCollection
+     **/
+    public function jsonSerialize(): GeoJsonPolygon|LinearRing
     {
         $linearRings = [];
         foreach ($this->items as $lineString) {

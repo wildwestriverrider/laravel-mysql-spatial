@@ -69,7 +69,7 @@ class MultiPoint extends PointCollection
      *
      * @return \GeoJson\Geometry\MultiPoint
      */
-    public function jsonSerialize(): \GeoJson\Geometry\GeometryCollection
+    public function jsonSerialize(): mixed
     {
         $points = [];
         foreach ($this->items as $point) {

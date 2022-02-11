@@ -19,7 +19,7 @@ class Builder extends EloquentBuilder
         return parent::update($values);
     }
 
-    #[Pure] protected function asWKT(GeometryInterface $geometry)
+    #[Pure] protected function asWKT(GeometryInterface $geometry): SpatialExpression
     {
         return new SpatialExpression($geometry);
     }

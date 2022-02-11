@@ -127,7 +127,7 @@ class MultiPolygon extends GeometryCollection
      *
      * @return \GeoJson\Geometry\MultiPolygon
      */
-    public function jsonSerialize(): \GeoJson\Geometry\GeometryCollection
+    public function jsonSerialize(): mixed
     {
         $polygons = [];
         foreach ($this->items as $polygon) {

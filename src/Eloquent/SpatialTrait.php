@@ -63,9 +63,9 @@ trait SpatialTrait
      *
      * @param \Illuminate\Database\Query\Builder $query
      *
-     * @return \Grimzy\LaravelMysqlSpatial\Eloquent\Builder
+     * @return Builder
      */
-    public function newEloquentBuilder($query)
+    public function newEloquentBuilder($query): Builder
     {
         return new Builder($query);
     }
@@ -89,7 +89,8 @@ trait SpatialTrait
                 $this->attributes[$key] = new SpatialExpression($value);
             }
         }
-
+        ray($this->attributes)->green();
+        ray($query->toSql());
         $insert = parent::performInsert($query, $options);
 
         foreach ($this->geometries as $key => $value) {
@@ -99,7 +100,7 @@ trait SpatialTrait
         return $insert; //Return the result of the parent insert
     }
 
-    public function setRawAttributes(array $attributes, $sync = false): SpatialTrait
+    public function setRawAttributes(array $attributes, $sync = false)
     {
         $spatial_fields = $this->getSpatialFields();
 

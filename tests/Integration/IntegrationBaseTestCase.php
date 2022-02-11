@@ -65,7 +65,8 @@ abstract class IntegrationBaseTestCase extends \Orchestra\Testbench\TestCase
             (new $migrationClass())->down();
         }, true);
 
-        parent::tearDown();
+        Mockery::close();
+//        parent::tearDown();
     }
 
     // MySQL 8.0.4 fixed bug #26941370 and bug #88031

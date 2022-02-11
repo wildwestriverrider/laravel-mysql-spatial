@@ -9,6 +9,11 @@ class MysqlConnectionTest extends TestCase
 {
     private $mysqlConnection;
 
+    public function tearDown() : void
+    {
+        Mockery::close();
+    }
+
     protected function setUp() : void
     {
         $dsn = 'mysql:dbname=spatial_test;host=127.0.0.1;port=13306;';
@@ -19,9 +24,7 @@ class MysqlConnectionTest extends TestCase
 
     public function testGetSchemaBuilder()
     {
-        ray($this->mysqlConnection);
         $builder = $this->mysqlConnection->getSchemaBuilder();
-
         $this->assertInstanceOf(Builder::class, $builder);
     }
 }

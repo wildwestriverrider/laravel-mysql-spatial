@@ -168,10 +168,14 @@ class MySqlGrammarBaseTest extends BaseTestCase
 
     public function testAddRemoveSpatialIndex()
     {
+        $dsn = 'mysql:dbname=spatial_test;host=127.0.0.1;port=13306;';
+        $pdo = new PDO($dsn, 'root', '');
+        $mysqlConfig = ['driver' => 'mysql', 'prefix' => 'prefix', 'database' => 'database', 'name' => 'foo'];
+        $conn = new MysqlConnection($pdo, 'database', 'prefix', $mysqlConfig);
         $blueprint = new Blueprint('test');
         $blueprint->point('foo');
         $blueprint->spatialIndex('foo');
-        $addStatements = $blueprint->toSql($this->getConnection(), $this->getGrammar());
+        $addStatements = $blueprint->toSql($conn, $this->getGrammar());
 
         $this->assertEquals(2, count($addStatements));
         $this->assertEquals('alter table `test` add spatial `test_foo_spatial`(`foo`)', $addStatements[1]);

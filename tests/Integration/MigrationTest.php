@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\DB;
 
 class MigrationTest extends IntegrationBaseTestCase
 {
+    use \Illuminate\Foundation\Testing\RefreshDatabase;
     protected $migrations = [
         CreateLocationTable::class,
         UpdateLocationTable::class,
@@ -13,6 +14,7 @@ class MigrationTest extends IntegrationBaseTestCase
     {
         $result = DB::selectOne('SHOW CREATE TABLE geometry');
 
+        ray($result);
         $expected = 'CREATE TABLE `geometry` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `geo` geometry DEFAULT NULL,
