@@ -118,7 +118,9 @@ class SridSpatialTest extends IntegrationBaseTestCase
             'of the column. (SQL: insert into `with_srid` (`location`) values '.
             '(ST_GeomFromText(POINT(2 1), 0, \'axis-order=long-lat\')))'
         );
+
         $geo->save();
+
     }
 
     public function testGeometryInsertedHasRightSrid()

@@ -49,7 +49,7 @@ abstract class BaseTestCase extends TestCase
     protected function getPackageProviders($app)
     {
         return [
-            \Grimzy\LaravelMysqlSpatial\SpatialServiceProvider::class,
+            SpatialServiceProvider::class,
         ];
     }
 

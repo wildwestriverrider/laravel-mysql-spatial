@@ -14,7 +14,6 @@ class MigrationTest extends IntegrationBaseTestCase
     {
         $result = DB::selectOne('SHOW CREATE TABLE geometry');
 
-        ray($result);
         $expected = 'CREATE TABLE `geometry` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `geo` geometry DEFAULT NULL,
@@ -29,7 +28,7 @@ class MigrationTest extends IntegrationBaseTestCase
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   SPATIAL KEY `geometry_location_spatial` (`location`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci';
 
         $this->assertEquals('geometry', $result->Table);
         $this->assertEquals($expected, $result->{'Create Table'});
