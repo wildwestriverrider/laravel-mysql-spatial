@@ -1,5 +1,5 @@
 {
-    "name": "grimzy/laravel-mysql-spatial",
+    "name": "wildwestriverrider/laravel-mysql-spatial",
     "description": "MySQL spatial data types extension for Laravel.",
     "scripts": {
         "test": "phpunit -c phpunit.xml.dist",
@@ -10,8 +10,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Joseph Estefane",
-            "email": "estefanejoe@gmail.com"
+            "name": "James Sweeney",
+            "email": "wildwestriverrider@gmail.com"
         }
     ],
     "require": {
@@ -45,11 +45,11 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "4.0.x-dev"
+            "dev-master": "1.0.0"
         },
         "laravel": {
             "providers": [
-                "Grimzy\\LaravelMysqlSpatial\\SpatialServiceProvider"
+                "Wildwestriverrider\\LaravelMysqlSpatial\\SpatialServiceProvider"
             ]
         }
     }
