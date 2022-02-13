@@ -1,12 +1,12 @@
 <?php
 
-namespace Grimzy\LaravelMysqlSpatial\Eloquent;
+namespace Wildwestriverrider\LaravelMysqlSpatial\Eloquent;
 
-use Grimzy\LaravelMysqlSpatial\Exceptions\SpatialFieldsNotDefinedException;
-use Grimzy\LaravelMysqlSpatial\Exceptions\UnknownSpatialFunctionException;
-use Grimzy\LaravelMysqlSpatial\Exceptions\UnknownSpatialRelationFunction;
-use Grimzy\LaravelMysqlSpatial\Types\Geometry;
-use Grimzy\LaravelMysqlSpatial\Types\GeometryInterface;
+use Wildwestriverrider\LaravelMysqlSpatial\Exceptions\SpatialFieldsNotDefinedException;
+use Wildwestriverrider\LaravelMysqlSpatial\Exceptions\UnknownSpatialFunctionException;
+use Wildwestriverrider\LaravelMysqlSpatial\Exceptions\UnknownSpatialRelationFunction;
+use Wildwestriverrider\LaravelMysqlSpatial\Types\Geometry;
+use Wildwestriverrider\LaravelMysqlSpatial\Types\GeometryInterface;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 
 /**

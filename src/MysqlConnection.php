@@ -1,10 +1,10 @@
 <?php
 
-namespace Grimzy\LaravelMysqlSpatial;
+namespace Wildwestriverrider\LaravelMysqlSpatial;
 
 use Doctrine\DBAL\Types\Type as DoctrineType;
-use Grimzy\LaravelMysqlSpatial\Schema\Builder;
-use Grimzy\LaravelMysqlSpatial\Schema\Grammars\MySqlGrammar;
+use Wildwestriverrider\LaravelMysqlSpatial\Schema\Builder;
+use Wildwestriverrider\LaravelMysqlSpatial\Schema\Grammars\MySqlGrammar;
 use Illuminate\Database\Grammar;
 use Illuminate\Database\MySqlConnection as IlluminateMySqlConnection;
 use Illuminate\Database\Schema\MySqlBuilder;

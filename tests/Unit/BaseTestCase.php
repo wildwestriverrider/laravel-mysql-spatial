@@ -1,6 +1,6 @@
 <?php
 
-use Grimzy\LaravelMysqlSpatial\SpatialServiceProvider;
+use Wildwestriverrider\LaravelMysqlSpatial\SpatialServiceProvider;
 use Orchestra\Testbench\TestCase;
 use Illuminate\Foundation\Application;
 

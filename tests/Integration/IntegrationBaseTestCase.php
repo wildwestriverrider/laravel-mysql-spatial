@@ -1,6 +1,6 @@
 <?php
 
-use Grimzy\LaravelMysqlSpatial\SpatialServiceProvider;
+use Wildwestriverrider\LaravelMysqlSpatial\SpatialServiceProvider;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\DB;
 

@@ -1,13 +1,14 @@
 # Laravel MySQL Spatial extension
 
-[![Build Status](https://img.shields.io/travis/grimzy/laravel-mysql-spatial.svg?style=flat-square)](https://travis-ci.org/grimzy/laravel-mysql-spatial)
-[![Code Climate](https://img.shields.io/codeclimate/maintainability/grimzy/laravel-mysql-spatial.svg?style=flat-square)](https://codeclimate.com/github/grimzy/laravel-mysql-spatial/maintainability)
-[![Code Climate](https://img.shields.io/codeclimate/c/grimzy/laravel-mysql-spatial.svg?style=flat-square&colorB=4BCA2A)](https://codeclimate.com/github/grimzy/laravel-mysql-spatial/test_coverage) [![Packagist](https://img.shields.io/packagist/v/grimzy/laravel-mysql-spatial.svg?style=flat-square)](https://packagist.org/packages/grimzy/laravel-mysql-spatial)
-[![Packagist](https://img.shields.io/packagist/dt/grimzy/laravel-mysql-spatial.svg?style=flat-square)](https://packagist.org/packages/grimzy/laravel-mysql-spatial) [![StyleCI](https://github.styleci.io/repos/83766141/shield?branch=master)](https://github.styleci.io/repos/83766141) 
+[![Build Status](https://img.shields.io/travis/Wildwestriverrider/laravel-mysql-spatial.svg?style=flat-square)](https://travis-ci.org/Wildwestriverrider/laravel-mysql-spatial)
+[![Code Climate](https://img.shields.io/codeclimate/maintainability/Wildwestriverrider/laravel-mysql-spatial.svg?style=flat-square)](https://codeclimate.com/github/Wildwestriverrider/laravel-mysql-spatial/maintainability)
+[![Code Climate](https://img.shields.io/codeclimate/c/Wildwestriverrider/laravel-mysql-spatial.svg?style=flat-square&colorB=4BCA2A)](https://codeclimate.com/github/Wildwestriverrider/laravel-mysql-spatial/test_coverage) [![Packagist](https://img.shields.io/packagist/v/Wildwestriverrider/laravel-mysql-spatial.svg?style=flat-square)](https://packagist.org/packages/Wildwestriverrider/laravel-mysql-spatial)
+[![Packagist](https://img.shields.io/packagist/dt/Wildwestriverrider/laravel-mysql-spatial.svg?style=flat-square)](https://packagist.org/packages/Wildwestriverrider/laravel-mysql-spatial) [![StyleCI](https://github.styleci.io/repos/83766141/shield?branch=master)](https://github.styleci.io/repos/83766141) 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](LICENSE)
 
 Laravel package to easily work with [MySQL Spatial Data Types](https://dev.mysql.com/doc/refman/8.0/en/spatial-type-overview.html) and [MySQL Spatial Functions](https://dev.mysql.com/doc/refman/8.0/en/spatial-function-reference.html).
 
+Forked from 
 Please check the documentation for your MySQL version. MySQL's Extension for Spatial Data was added in MySQL 5.5 but many Spatial Functions were changed in 5.6 and 5.7.
 
 **Versions**
@@ -25,22 +26,22 @@ This package also works with MariaDB. Please refer to the [MySQL/MariaDB Spatial
 Add the package using composer:
 
 ```sh
-$ composer require grimzy/laravel-mysql-spatial:^4.0
+$ composer require Wildwestriverrider/laravel-mysql-spatial:^4.0
 
 # or for Laravel version < 8.0
-$ composer require grimzy/laravel-mysql-spatial:^3.0
+$ composer require Wildwestriverrider/laravel-mysql-spatial:^3.0
 ```
 
 For MySQL 5.7:
 
 ```shell
-$ composer require grimzy/laravel-mysql-spatial:^2.0
+$ composer require Wildwestriverrider/laravel-mysql-spatial:^2.0
 ```
 
 For MySQL 5.6 and 5.5:
 
 ```shell
-$ composer require grimzy/laravel-mysql-spatial:^1.0
+$ composer require Wildwestriverrider/laravel-mysql-spatial:^1.0
 ```
 
 For Laravel versions before 5.5 or if not using auto-discovery, register the service provider in `config/app.php`:
@@ -50,7 +51,7 @@ For Laravel versions before 5.5 or if not using auto-discovery, register the ser
   /*
    * Package Service Providers...
    */
-  Grimzy\LaravelMysqlSpatial\SpatialServiceProvider::class,
+  Wildwestriverrider\LaravelMysqlSpatial\SpatialServiceProvider::class,
 ],
 ```
 
@@ -64,14 +65,14 @@ From the command line:
 php artisan make:migration create_places_table
 ```
 
-Then edit the migration you just created by adding at least one spatial data field. For Laravel versions prior to 5.5, you can use the Blueprint provided by this package (Grimzy\LaravelMysqlSpatial\Schema\Blueprint):
+Then edit the migration you just created by adding at least one spatial data field. For Laravel versions prior to 5.5, you can use the Blueprint provided by this package (Wildwestriverrider\LaravelMysqlSpatial\Schema\Blueprint):
 
 ```php
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
 // For Laravel < 5.5
-// use Grimzy\LaravelMysqlSpatial\Schema\Blueprint;
+// use Wildwestriverrider\LaravelMysqlSpatial\Schema\Blueprint;
 
 class CreatePlacesTable extends Migration {
 
@@ -139,11 +140,11 @@ Then edit the model you just created. It must use the `SpatialTrait` and define 
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Grimzy\LaravelMysqlSpatial\Eloquent\SpatialTrait;
+use Wildwestriverrider\LaravelMysqlSpatial\Eloquent\SpatialTrait;
 
 /**
- * @property \Grimzy\LaravelMysqlSpatial\Types\Point   $location
- * @property \Grimzy\LaravelMysqlSpatial\Types\Polygon $area
+ * @property \Wildwestriverrider\LaravelMysqlSpatial\Types\Point   $location
+ * @property \Wildwestriverrider\LaravelMysqlSpatial\Types\Polygon $area
  */
 class Place extends Model
 {
@@ -163,9 +164,9 @@ class Place extends Model
 ### Saving a model
 
 ```php
-use Grimzy\LaravelMysqlSpatial\Types\Point;
-use Grimzy\LaravelMysqlSpatial\Types\Polygon;
-use Grimzy\LaravelMysqlSpatial\Types\LineString;
+use Wildwestriverrider\LaravelMysqlSpatial\Types\Point;
+use Wildwestriverrider\LaravelMysqlSpatial\Types\Polygon;
+use Wildwestriverrider\LaravelMysqlSpatial\Types\LineString;
 
 $place1 = new Place();
 $place1->name = 'Empire State Building';
@@ -188,9 +189,9 @@ $place1->save();
 Or if your database fields were created with a specific SRID:
 
 ```php
-use Grimzy\LaravelMysqlSpatial\Types\Point;
-use Grimzy\LaravelMysqlSpatial\Types\Polygon;
-use Grimzy\LaravelMysqlSpatial\Types\LineString;
+use Wildwestriverrider\LaravelMysqlSpatial\Types\Point;
+use Wildwestriverrider\LaravelMysqlSpatial\Types\Polygon;
+use Wildwestriverrider\LaravelMysqlSpatial\Types\LineString;
 
 $place1 = new Place();
 $place1->name = 'Empire State Building';
@@ -226,7 +227,7 @@ $lng = $place2->location->getLng();	// -73.9878441
 
 ### Available Geometry classes
 
-| Grimzy\LaravelMysqlSpatial\Types                             | OpenGIS Class                                                |
+| Wildwestriverrider\LaravelMysqlSpatial\Types                             | OpenGIS Class                                                |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `Point($lat, $lng, $srid = 0)`                               | [Point](https://dev.mysql.com/doc/refman/8.0/en/gis-class-point.html) |
 | `MultiPoint(Point[], $srid = 0)`                             | [MultiPoint](https://dev.mysql.com/doc/refman/8.0/en/gis-class-multipoint.html) |
@@ -240,7 +241,7 @@ Check out the [Class diagram](https://user-images.githubusercontent.com/1837678/
 
 ### Using Geometry classes
 
-In order for your Eloquent Model to handle the Geometry classes, it must use the `Grimzy\LaravelMysqlSpatial\Eloquent\SpatialTrait` trait and define a `protected` property `$spatialFields`  as an array of MySQL Spatial Data Type column names (example in [Quickstart](#user-content-create-a-model)).
+In order for your Eloquent Model to handle the Geometry classes, it must use the `Wildwestriverrider\LaravelMysqlSpatial\Eloquent\SpatialTrait` trait and define a `protected` property `$spatialFields`  as an array of MySQL Spatial Data Type column names (example in [Quickstart](#user-content-create-a-model)).
 
 #### IteratorAggregate and ArrayAccess
 
@@ -338,11 +339,11 @@ Available scopes:
 
 ## Migrations
 
-For Laravel versions prior to 5.5, you can use the Blueprint provided with this package: `Grimzy\LaravelMysqlSpatial\Schema\Blueprint`.
+For Laravel versions prior to 5.5, you can use the Blueprint provided with this package: `Wildwestriverrider\LaravelMysqlSpatial\Schema\Blueprint`.
 
 ```php
 use Illuminate\Database\Migrations\Migration;
-use Grimzy\LaravelMysqlSpatial\Schema\Blueprint;
+use Wildwestriverrider\LaravelMysqlSpatial\Schema\Blueprint;
 
 class CreatePlacesTable extends Migration {
     // ...
@@ -452,5 +453,5 @@ Recommendations and pull request are most welcome! Pull requests with tests are 
 
 ## Credits
 
-Originally inspired from [njbarrett's Laravel postgis package](https://github.com/njbarrett/laravel-postgis).
+Forked from [grimzy/laravel-mysql-spatial](https://github.com/grimzy/laravel-mysql-spatial).
 
