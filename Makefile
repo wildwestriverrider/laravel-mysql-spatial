@@ -6,7 +6,7 @@ mDB_DIR=$(shell pwd)/_db-$(mV)
 start_db:
 	@echo Starting MySQL $(V)
 	docker run --rm -d --name spatial-mysql \
-            -p 3306:3306 \
+            -p 13306:3306 \
             -v $(DB_DIR):/var/lib/mysql \
             -e MYSQL_DATABASE=spatial_test \
             -e MYSQL_ALLOW_EMPTY_PASSWORD=yes \
@@ -15,7 +15,7 @@ start_db:
 start_db_maria:
 	@echo Starting MariaDB $(mV)
 	docker run --rm -d --name spatial-mysql \
-			-p 3306:3306 \
+			-p 13306:3306 \
 			-v $(DB_DIR):/var/lib/mysql \
 			-e MYSQL_DATABASE=spatial_test \
 			-e MYSQL_ALLOW_EMPTY_PASSWORD=yes \

@@ -3,3 +3,5 @@ vendor/
 composer.lock
 _db/
 build/
+/_db-8.0
+/.phpunit.result.cache

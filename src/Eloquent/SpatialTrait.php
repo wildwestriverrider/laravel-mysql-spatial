@@ -89,8 +89,6 @@ trait SpatialTrait
                 $this->attributes[$key] = new SpatialExpression($value);
             }
         }
-        ray($this->attributes)->green();
-        ray($query->toSql());
         $insert = parent::performInsert($query, $options);
 
         foreach ($this->geometries as $key => $value) {
