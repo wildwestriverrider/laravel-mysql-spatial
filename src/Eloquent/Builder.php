@@ -2,9 +2,9 @@
 
 namespace Wildwestriverrider\LaravelMysqlSpatial\Eloquent;
 
-use Wildwestriverrider\LaravelMysqlSpatial\Types\GeometryInterface;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use JetBrains\PhpStorm\Pure;
+use Wildwestriverrider\LaravelMysqlSpatial\Types\GeometryInterface;
 
 class Builder extends EloquentBuilder
 {
@@ -19,8 +19,9 @@ class Builder extends EloquentBuilder
         return parent::update($values);
     }
 
-    #[Pure] protected function asWKT(GeometryInterface $geometry): SpatialExpression
-    {
-        return new SpatialExpression($geometry);
-    }
+    #[Pure]
+ protected function asWKT(GeometryInterface $geometry): SpatialExpression
+ {
+     return new SpatialExpression($geometry);
+ }
 }

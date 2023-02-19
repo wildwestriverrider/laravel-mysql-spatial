@@ -3,9 +3,9 @@
 namespace Schema;
 
 use BaseTestCase;
-use Wildwestriverrider\LaravelMysqlSpatial\Schema\Blueprint;
 use Illuminate\Database\Schema\ColumnDefinition;
 use Mockery;
+use Wildwestriverrider\LaravelMysqlSpatial\Schema\Blueprint;
 
 class BlueprintTest extends BaseTestCase
 {
@@ -14,7 +14,7 @@ class BlueprintTest extends BaseTestCase
      */
     protected $blueprint;
 
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
 
