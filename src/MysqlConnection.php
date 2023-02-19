@@ -3,11 +3,11 @@
 namespace Wildwestriverrider\LaravelMysqlSpatial;
 
 use Doctrine\DBAL\Types\Type as DoctrineType;
-use Wildwestriverrider\LaravelMysqlSpatial\Schema\Builder;
-use Wildwestriverrider\LaravelMysqlSpatial\Schema\Grammars\MySqlGrammar;
 use Illuminate\Database\Grammar;
 use Illuminate\Database\MySqlConnection as IlluminateMySqlConnection;
 use Illuminate\Database\Schema\MySqlBuilder;
+use Wildwestriverrider\LaravelMysqlSpatial\Schema\Builder;
+use Wildwestriverrider\LaravelMysqlSpatial\Schema\Grammars\MySqlGrammar;
 
 class MysqlConnection extends IlluminateMySqlConnection
 {
@@ -38,8 +38,6 @@ class MysqlConnection extends IlluminateMySqlConnection
 
     /**
      * Get the default schema grammar instance.
-     *
-     * @return Grammar
      */
     protected function getDefaultSchemaGrammar(): Grammar
     {

@@ -3,6 +3,8 @@
 namespace Wildwestriverrider\LaravelMysqlSpatial;
 
 use Doctrine\DBAL\Types\Type as DoctrineType;
+use Illuminate\Database\DatabaseManager;
+use Illuminate\Database\DatabaseServiceProvider;
 use Wildwestriverrider\LaravelMysqlSpatial\Connectors\ConnectionFactory;
 use Wildwestriverrider\LaravelMysqlSpatial\Doctrine\Geometry;
 use Wildwestriverrider\LaravelMysqlSpatial\Doctrine\GeometryCollection;
@@ -12,8 +14,6 @@ use Wildwestriverrider\LaravelMysqlSpatial\Doctrine\MultiPoint;
 use Wildwestriverrider\LaravelMysqlSpatial\Doctrine\MultiPolygon;
 use Wildwestriverrider\LaravelMysqlSpatial\Doctrine\Point;
 use Wildwestriverrider\LaravelMysqlSpatial\Doctrine\Polygon;
-use Illuminate\Database\DatabaseManager;
-use Illuminate\Database\DatabaseServiceProvider;
 
 /**
  * Class DatabaseServiceProvider.
@@ -59,7 +59,7 @@ class SpatialServiceProvider extends DatabaseServiceProvider
             ];
             $typeNames = array_keys(DoctrineType::getTypesMap());
             foreach ($geometries as $type => $class) {
-                if (!in_array($type, $typeNames)) {
+                if (! in_array($type, $typeNames)) {
                     DoctrineType::addType($type, $class);
                 }
             }

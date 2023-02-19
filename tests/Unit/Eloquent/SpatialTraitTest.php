@@ -1,35 +1,27 @@
 <?php
 
-use Wildwestriverrider\LaravelMysqlSpatial\Exceptions\SpatialFieldsNotDefinedException;
-use Wildwestriverrider\LaravelMysqlSpatial\MysqlConnection;
-use Wildwestriverrider\LaravelMysqlSpatial\SpatialServiceProvider;
-use Wildwestriverrider\LaravelMysqlSpatial\Types\Point;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Application;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery as m;
+use Wildwestriverrider\LaravelMysqlSpatial\Exceptions\SpatialFieldsNotDefinedException;
+use Wildwestriverrider\LaravelMysqlSpatial\MysqlConnection;
+use Wildwestriverrider\LaravelMysqlSpatial\Types\Point;
 
 class SpatialTraitTest extends BaseTestCase
 {
     use MockeryPHPUnitIntegration;
 
-    /**
-     * @var TestModel
-     */
     protected TestModel $model;
 
-    /**
-     * @var array
-     */
     protected array $queries;
 
-    public function setUp() : void
+    public function setUp(): void
     {
         $this->model = new TestModel();
         $this->queries = &$this->model->getConnection()->getPdo()->queries;
     }
 
-    public function tearDown() : void
+    public function tearDown(): void
     {
         $this->model->getConnection()->getPdo()->resetQueries();
     }
@@ -546,6 +538,7 @@ class TestModel extends Model
             static::$pdo->__construct();
             //static::$pdo = m::mock('TestPDO');
         }
+
         return new MysqlConnection(static::$pdo);
     }
 

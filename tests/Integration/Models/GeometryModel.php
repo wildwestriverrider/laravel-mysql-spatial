@@ -1,7 +1,7 @@
 <?php
 
-use Wildwestriverrider\LaravelMysqlSpatial\Eloquent\SpatialTrait;
 use Illuminate\Database\Eloquent\Model;
+use Wildwestriverrider\LaravelMysqlSpatial\Eloquent\SpatialTrait;
 
 /**
  * Class GeometryModel.

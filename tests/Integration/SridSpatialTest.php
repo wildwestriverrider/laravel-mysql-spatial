@@ -120,7 +120,6 @@ class SridSpatialTest extends IntegrationBaseTestCase
         );
 
         $geo->save();
-
     }
 
     public function testGeometryInsertedHasRightSrid()
