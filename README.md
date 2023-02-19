@@ -1,8 +1,5 @@
 # Laravel MySQL Spatial extension
-
-[![Build Status](https://img.shields.io/travis/Wildwestriverrider/laravel-mysql-spatial.svg?style=flat-square)](https://travis-ci.org/Wildwestriverrider/laravel-mysql-spatial)
-[![Code Climate](https://img.shields.io/codeclimate/maintainability/Wildwestriverrider/laravel-mysql-spatial.svg?style=flat-square)](https://codeclimate.com/github/Wildwestriverrider/laravel-mysql-spatial/maintainability)
-[![Code Climate](https://img.shields.io/codeclimate/c/Wildwestriverrider/laravel-mysql-spatial.svg?style=flat-square&colorB=4BCA2A)](https://codeclimate.com/github/Wildwestriverrider/laravel-mysql-spatial/test_coverage) [![Packagist](https://img.shields.io/packagist/v/Wildwestriverrider/laravel-mysql-spatial.svg?style=flat-square)](https://packagist.org/packages/Wildwestriverrider/laravel-mysql-spatial)
+![run-tests](https://github.com/wildwestriverrider/laravel-mysql-spatial/actions/workflows/run-tests.yml/badge.svg?branch=master)
 [![Packagist](https://img.shields.io/packagist/dt/Wildwestriverrider/laravel-mysql-spatial.svg?style=flat-square)](https://packagist.org/packages/Wildwestriverrider/laravel-mysql-spatial) [![StyleCI](https://github.styleci.io/repos/83766141/shield?branch=master)](https://github.styleci.io/repos/83766141) 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](LICENSE)
 
