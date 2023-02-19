@@ -1,15 +1,13 @@
 <?php
 
-use Wildwestriverrider\LaravelMysqlSpatial\SpatialServiceProvider;
-use Orchestra\Testbench\TestCase;
 use Illuminate\Foundation\Application;
+use Orchestra\Testbench\TestCase;
+use Wildwestriverrider\LaravelMysqlSpatial\SpatialServiceProvider;
 
 abstract class BaseTestCase extends TestCase
 {
     /**
      * Boots the application.
-     *
-     * @return Application
      */
     public function createApplication(): Application
     {
@@ -36,7 +34,7 @@ abstract class BaseTestCase extends TestCase
         return $app;
     }
 
-    public function tearDown() : void
+    public function tearDown(): void
     {
         Mockery::close();
     }
@@ -74,9 +72,9 @@ abstract class BaseTestCase extends TestCase
         // Setup default database to use sqlite :memory:
         config()->set('database.default', 'spatial_test');
         config()->set('database.connections.spatial_test', [
-            'driver'   => 'mysql',
+            'driver' => 'mysql',
             'database' => 'spatial_test',
-            'prefix'   => '',
+            'prefix' => '',
         ]);
     }
 

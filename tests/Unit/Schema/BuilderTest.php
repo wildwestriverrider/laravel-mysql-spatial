@@ -3,10 +3,10 @@
 namespace Schema;
 
 use BaseTestCase;
+use Mockery;
 use Wildwestriverrider\LaravelMysqlSpatial\MysqlConnection;
 use Wildwestriverrider\LaravelMysqlSpatial\Schema\Blueprint;
 use Wildwestriverrider\LaravelMysqlSpatial\Schema\Builder;
-use Mockery;
 
 class BuilderTest extends BaseTestCase
 {

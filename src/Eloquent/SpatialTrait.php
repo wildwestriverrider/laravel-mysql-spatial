@@ -2,12 +2,12 @@
 
 namespace Wildwestriverrider\LaravelMysqlSpatial\Eloquent;
 
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Wildwestriverrider\LaravelMysqlSpatial\Exceptions\SpatialFieldsNotDefinedException;
 use Wildwestriverrider\LaravelMysqlSpatial\Exceptions\UnknownSpatialFunctionException;
 use Wildwestriverrider\LaravelMysqlSpatial\Exceptions\UnknownSpatialRelationFunction;
 use Wildwestriverrider\LaravelMysqlSpatial\Types\Geometry;
 use Wildwestriverrider\LaravelMysqlSpatial\Types\GeometryInterface;
-use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 
 /**
  * Trait SpatialTrait.
@@ -61,9 +61,7 @@ trait SpatialTrait
     /**
      * Create a new Eloquent query builder for the model.
      *
-     * @param \Illuminate\Database\Query\Builder $query
-     *
-     * @return Builder
+     * @param  \Illuminate\Database\Query\Builder  $query
      */
     public function newEloquentBuilder($query): Builder
     {
@@ -122,7 +120,7 @@ trait SpatialTrait
 
     public function isColumnAllowed($geometryColumn): bool
     {
-        if (!in_array($geometryColumn, $this->getSpatialFields())) {
+        if (! in_array($geometryColumn, $this->getSpatialFields())) {
             throw new SpatialFieldsNotDefinedException();
         }
 
@@ -162,7 +160,7 @@ trait SpatialTrait
 
         $columns = $query->getQuery()->columns;
 
-        if (!$columns) {
+        if (! $columns) {
             $query->select('*');
         }
 
@@ -205,7 +203,7 @@ trait SpatialTrait
 
         $columns = $query->getQuery()->columns;
 
-        if (!$columns) {
+        if (! $columns) {
             $query->select('*');
         }
         $query->selectRaw("st_distance_sphere(`$geometryColumn`, ST_GeomFromText(?, ?, 'axis-order=long-lat')) as distance", [
@@ -218,7 +216,7 @@ trait SpatialTrait
     {
         $this->isColumnAllowed($geometryColumn);
 
-        if (!in_array($relationship, $this->stRelations)) {
+        if (! in_array($relationship, $this->stRelations)) {
             throw new UnknownSpatialRelationFunction($relationship);
         }
 
@@ -274,7 +272,7 @@ trait SpatialTrait
     {
         $this->isColumnAllowed($geometryColumn);
 
-        if (!in_array($orderFunction, $this->stOrderFunctions)) {
+        if (! in_array($orderFunction, $this->stOrderFunctions)) {
             throw new UnknownSpatialFunctionException($orderFunction);
         }
 

@@ -3,6 +3,10 @@
 namespace Eloquent;
 
 use BaseTestCase;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder as QueryBuilder;
+use Illuminate\Database\Query\Grammars\MySqlGrammar;
+use Mockery;
 use Wildwestriverrider\LaravelMysqlSpatial\Eloquent\Builder;
 use Wildwestriverrider\LaravelMysqlSpatial\Eloquent\SpatialExpression;
 use Wildwestriverrider\LaravelMysqlSpatial\Eloquent\SpatialTrait;
@@ -10,17 +14,14 @@ use Wildwestriverrider\LaravelMysqlSpatial\MysqlConnection;
 use Wildwestriverrider\LaravelMysqlSpatial\Types\LineString;
 use Wildwestriverrider\LaravelMysqlSpatial\Types\Point;
 use Wildwestriverrider\LaravelMysqlSpatial\Types\Polygon;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Query\Builder as QueryBuilder;
-use Illuminate\Database\Query\Grammars\MySqlGrammar;
-use Mockery;
 
 class BuilderTest extends BaseTestCase
 {
     protected $builder;
+
     protected $queryBuilder;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $connection = Mockery::mock(MysqlConnection::class)->makePartial();
         $grammar = Mockery::mock(MySqlGrammar::class)->makePartial();
@@ -135,5 +136,6 @@ class TestBuilderModel extends Model
     use SpatialTrait;
 
     public $timestamps = false;
+
     protected $spatialFields = ['point', 'linestring', 'polygon'];
 }

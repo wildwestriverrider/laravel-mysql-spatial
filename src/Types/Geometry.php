@@ -4,8 +4,8 @@ namespace Wildwestriverrider\LaravelMysqlSpatial\Types;
 
 use GeoIO\WKB\Parser\Parser;
 use GeoJson\GeoJson;
-use Wildwestriverrider\LaravelMysqlSpatial\Exceptions\UnknownWKTTypeException;
 use Illuminate\Contracts\Support\Jsonable;
+use Wildwestriverrider\LaravelMysqlSpatial\Exceptions\UnknownWKTTypeException;
 
 abstract class Geometry implements GeometryInterface, Jsonable, \JsonSerializable
 {

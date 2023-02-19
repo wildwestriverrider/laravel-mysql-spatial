@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 class MigrationTest extends IntegrationBaseTestCase
 {
     use \Illuminate\Foundation\Testing\RefreshDatabase;
+
     protected $migrations = [
         CreateLocationTable::class,
         UpdateLocationTable::class,

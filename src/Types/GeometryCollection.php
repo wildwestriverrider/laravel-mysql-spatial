@@ -7,10 +7,10 @@ use ArrayIterator;
 use Countable;
 use GeoJson\Feature\FeatureCollection;
 use GeoJson\GeoJson;
-use Wildwestriverrider\LaravelMysqlSpatial\Exceptions\InvalidGeoJsonException;
 use Illuminate\Contracts\Support\Arrayable;
 use InvalidArgumentException;
 use IteratorAggregate;
+use Wildwestriverrider\LaravelMysqlSpatial\Exceptions\InvalidGeoJsonException;
 
 class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAccess, Arrayable, Countable
 {
@@ -36,8 +36,8 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
     protected $items = [];
 
     /**
-     * @param GeometryInterface[] $geometries
-     * @param int                 $srid
+     * @param  GeometryInterface[]  $geometries
+     * @param  int  $srid
      *
      * @throws InvalidArgumentException
      */
@@ -97,12 +97,12 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
         return isset($this->items[$offset]);
     }
 
-    public function offsetGet($offset) : mixed
+    public function offsetGet($offset): mixed
     {
         return $this->offsetExists($offset) ? $this->items[$offset] : null;
     }
 
-    public function offsetSet($offset, $value) : void
+    public function offsetSet($offset, $value): void
     {
         $this->validateItemType($value);
 
@@ -113,12 +113,12 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
         }
     }
 
-    public function offsetUnset($offset) : void
+    public function offsetUnset($offset): void
     {
         unset($this->items[$offset]);
     }
 
-    public function count() : int
+    public function count(): int
     {
         return count($this->items);
     }
@@ -129,7 +129,7 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
             $geoJson = GeoJson::jsonUnserialize(json_decode($geoJson));
         }
 
-        if (!is_a($geoJson, FeatureCollection::class)) {
+        if (! is_a($geoJson, FeatureCollection::class)) {
             throw new InvalidGeoJsonException('Expected '.FeatureCollection::class.', got '.get_class($geoJson));
         }
 
@@ -158,8 +158,6 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
 
     /**
      * Checks whether the items are valid to create this collection.
-     *
-     * @param array $items
      */
     protected function validateItems(array $items)
     {
@@ -173,7 +171,6 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
     /**
      * Checks whether the array has enough items to generate a valid WKT.
      *
-     * @param array $items
      *
      * @see $minimumCollectionItems
      */
@@ -194,13 +191,12 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
     /**
      * Checks the type of the items in the array.
      *
-     * @param $item
      *
      * @see $collectionItemType
      */
     protected function validateItemType($item)
     {
-        if (!$item instanceof $this->collectionItemType) {
+        if (! $item instanceof $this->collectionItemType) {
             throw new InvalidArgumentException(sprintf(
                 '%s must be a collection of %s',
                 get_class($this),

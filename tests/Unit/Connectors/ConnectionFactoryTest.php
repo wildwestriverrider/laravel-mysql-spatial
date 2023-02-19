@@ -1,9 +1,9 @@
 <?php
 
-use Wildwestriverrider\LaravelMysqlSpatial\Connectors\ConnectionFactory;
-use Wildwestriverrider\LaravelMysqlSpatial\MysqlConnection;
 use Illuminate\Container\Container;
 use Stubs\PDOStub;
+use Wildwestriverrider\LaravelMysqlSpatial\Connectors\ConnectionFactory;
+use Wildwestriverrider\LaravelMysqlSpatial\MysqlConnection;
 
 class ConnectionFactoryBaseTest extends BaseTestCase
 {
