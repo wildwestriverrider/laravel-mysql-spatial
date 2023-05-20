@@ -581,8 +581,8 @@ class TestPDO extends PDO
     {
         $dsn = 'mysql:dbname=spatial_test;host=127.0.0.1;port=13306;';
         parent::__construct($dsn, 'root', '');
-//        $mysqlConfig = ['driver' => 'mysql', 'prefix' => 'prefix', 'database' => 'database', 'name' => 'foo'];
-//        $this->mysqlConnection = new MysqlConnection($pdo, 'database', 'prefix', $mysqlConfig);
+        //        $mysqlConfig = ['driver' => 'mysql', 'prefix' => 'prefix', 'database' => 'database', 'name' => 'foo'];
+        //        $this->mysqlConnection = new MysqlConnection($pdo, 'database', 'prefix', $mysqlConfig);
     }
 
     public function prepare($statement, $driver_options = []): PDOStatement|false
