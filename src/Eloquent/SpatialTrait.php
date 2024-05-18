@@ -87,7 +87,7 @@ trait SpatialTrait
                 $this->attributes[$key] = new SpatialExpression($value);
             }
         }
-        $insert = parent::performInsert($query, $options);
+        $insert = parent::performInsert($query);
 
         foreach ($this->geometries as $key => $value) {
             $this->attributes[$key] = $value; //Retrieve the geometry objects so they can be used in the model

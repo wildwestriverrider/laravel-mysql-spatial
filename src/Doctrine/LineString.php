@@ -9,7 +9,7 @@ class LineString extends Type
 {
     const LINESTRING = 'linestring';
 
-    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform): string
+    public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
         return 'linestring';
     }

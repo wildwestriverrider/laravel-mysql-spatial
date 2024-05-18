@@ -2,6 +2,7 @@
 
 namespace Wildwestriverrider\LaravelMysqlSpatial;
 
+use Doctrine\DBAL\Exception;
 use Doctrine\DBAL\Types\Type as DoctrineType;
 use Illuminate\Database\Grammar;
 use Illuminate\Database\MySqlConnection as IlluminateMySqlConnection;
@@ -11,6 +12,9 @@ use Wildwestriverrider\LaravelMysqlSpatial\Schema\Grammars\MySqlGrammar;
 
 class MysqlConnection extends IlluminateMySqlConnection
 {
+    /**
+     * @throws Exception
+     */
     public function __construct($pdo, $database = '', $tablePrefix = '', array $config = [])
     {
         parent::__construct($pdo, $database, $tablePrefix, $config);
@@ -28,8 +32,10 @@ class MysqlConnection extends IlluminateMySqlConnection
                 'geometrycollection',
                 'geomcollection',
             ];
-            $dbPlatform = $this->getDoctrineSchemaManager()
-                ->getDatabasePlatform();
+
+//            $dbPlatform = $this->getDoctrineSchemaManager()
+//                ->getDatabasePlatform();
+            $dbPlatform = $this->doctrineConnection->getDatabasePlatform();
             foreach ($geometries as $type) {
                 $dbPlatform->registerDoctrineTypeMapping($type, 'string');
             }
@@ -47,7 +53,7 @@ class MysqlConnection extends IlluminateMySqlConnection
     /**
      * Get a schema builder instance for the connection.
      *
-     * @return MySqlBuilder
+     * @return MySqlBuilder|Builder
      */
     public function getSchemaBuilder(): MySqlBuilder|Builder
     {
