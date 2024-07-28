@@ -4,8 +4,21 @@ use Wildwestriverrider\LaravelMysqlSpatial\MysqlConnection;
 use Wildwestriverrider\LaravelMysqlSpatial\Schema\Blueprint;
 use Wildwestriverrider\LaravelMysqlSpatial\Schema\Grammars\MySqlGrammar;
 
-class MySqlGrammarBaseTest extends BaseTestCase
+class MySqlGrammarTest extends BaseTestCase
 {
+    public function tearDown(): void
+    {
+        Mockery::close();
+
+        // Reset any custom error handlers
+        restore_error_handler();
+
+        // Reset any custom exception handlers
+        restore_exception_handler();
+
+        parent::tearDown();
+    }
+
     public function testAddingGeometry()
     {
         $blueprint = new Blueprint('test');
@@ -89,7 +102,7 @@ class MySqlGrammarBaseTest extends BaseTestCase
     public function testAddingGeometryWithSrid()
     {
         $blueprint = new Blueprint('test');
-        $blueprint->geometry('foo', 4326);
+        $blueprint->geometry('foo', null,4326);
         $statements = $blueprint->toSql($this->getConnection(), $this->getGrammar());
 
         $this->assertEquals(1, count($statements));
@@ -168,7 +181,7 @@ class MySqlGrammarBaseTest extends BaseTestCase
 
     public function testAddRemoveSpatialIndex()
     {
-        $dsn = 'mysql:dbname=spatial_test;host=127.0.0.1;port=13306;';
+        $dsn = 'mysql:dbname=spatial_test;host=127.0.0.1;port=3306;';
         $pdo = new PDO($dsn, 'root', '');
         $mysqlConfig = ['driver' => 'mysql', 'prefix' => 'prefix', 'database' => 'database', 'name' => 'foo'];
         $conn = new MysqlConnection($pdo, 'database', 'prefix', $mysqlConfig);

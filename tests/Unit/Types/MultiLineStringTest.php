@@ -6,6 +6,19 @@ use Wildwestriverrider\LaravelMysqlSpatial\Types\Point;
 
 class MultiLineStringTest extends BaseTestCase
 {
+    public function tearDown(): void
+    {
+        Mockery::close();
+
+        // Reset any custom error handlers
+        restore_error_handler();
+
+        // Reset any custom exception handlers
+        restore_exception_handler();
+
+        parent::tearDown();
+    }
+
     public function testFromWKT()
     {
         $multilinestring = MultiLineString::fromWKT('MULTILINESTRING((0 0,1 1,1 2),(2 3,3 2,5 4))');

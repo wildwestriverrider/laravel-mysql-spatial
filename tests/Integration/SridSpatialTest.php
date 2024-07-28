@@ -16,6 +16,19 @@ class SridSpatialTest extends IntegrationBaseTestCase
         UpdateLocationTable::class,
     ];
 
+    public function tearDown(): void
+    {
+        Mockery::close();
+
+        // Reset any custom error handlers
+        restore_error_handler();
+
+        // Reset any custom exception handlers
+        restore_exception_handler();
+
+        parent::tearDown();
+    }
+
     public function testInsertPointWithSrid()
     {
         $geo = new WithSridModel();
@@ -107,7 +120,10 @@ class SridSpatialTest extends IntegrationBaseTestCase
     public function testInsertPointWithWrongSrid()
     {
         $geo = new WithSridModel();
+
         $geo->location = new Point(1, 2);
+
+
 
         $this->assertException(
             Illuminate\Database\QueryException::class,
@@ -115,7 +131,7 @@ class SridSpatialTest extends IntegrationBaseTestCase
             'does not match the SRID of the column \'location\'. The SRID '.
             'of the geometry is 0, but the SRID of the column is 3857. '.
             'Consider changing the SRID of the geometry or the SRID property '.
-            'of the column. (SQL: insert into `with_srid` (`location`) values '.
+            'of the column. (Connection: mysql, SQL: insert into `with_srid` (`location`) values '.
             '(ST_GeomFromText(POINT(2 1), 0, \'axis-order=long-lat\')))'
         );
 

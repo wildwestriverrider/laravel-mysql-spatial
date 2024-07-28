@@ -4,6 +4,19 @@ use Wildwestriverrider\LaravelMysqlSpatial\Types\Point;
 
 class PointTest extends BaseTestCase
 {
+    public function tearDown(): void
+    {
+        Mockery::close();
+
+        // Reset any custom error handlers
+        restore_error_handler();
+
+        // Reset any custom exception handlers
+        restore_exception_handler();
+
+        parent::tearDown();
+    }
+
     public function testFromWKT()
     {
         $point = Point::fromWKT('POINT(1 2)', 4326);

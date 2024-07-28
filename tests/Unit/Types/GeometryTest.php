@@ -12,6 +12,19 @@ use Wildwestriverrider\LaravelMysqlSpatial\Types\Polygon;
 
 class GeometryTest extends BaseTestCase
 {
+    public function tearDown(): void
+    {
+        Mockery::close();
+
+        // Reset any custom error handlers
+        restore_error_handler();
+
+        // Reset any custom exception handlers
+        restore_exception_handler();
+
+        parent::tearDown();
+    }
+
     public function testGetWKTArgument()
     {
         $this->assertEquals('0 0', Geometry::getWKTArgument('POINT(0 0)'));

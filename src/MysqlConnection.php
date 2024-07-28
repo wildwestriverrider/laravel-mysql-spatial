@@ -19,27 +19,27 @@ class MysqlConnection extends IlluminateMySqlConnection
     {
         parent::__construct($pdo, $database, $tablePrefix, $config);
 
-        if (class_exists(DoctrineType::class)) {
-            // Prevent geometry type fields from throwing a 'type not found' error when changing them
-            $geometries = [
-                'geometry',
-                'point',
-                'linestring',
-                'polygon',
-                'multipoint',
-                'multilinestring',
-                'multipolygon',
-                'geometrycollection',
-                'geomcollection',
-            ];
-
+//        if (class_exists(DoctrineType::class)) {
+//            // Prevent geometry type fields from throwing a 'type not found' error when changing them
+//            $geometries = [
+//                'geometry',
+//                'point',
+//                'linestring',
+//                'polygon',
+//                'multipoint',
+//                'multilinestring',
+//                'multipolygon',
+//                'geometrycollection',
+//                'geomcollection',
+//            ];
+//
 //            $dbPlatform = $this->getDoctrineSchemaManager()
 //                ->getDatabasePlatform();
-            $dbPlatform = $this->doctrineConnection->getDatabasePlatform();
-            foreach ($geometries as $type) {
-                $dbPlatform->registerDoctrineTypeMapping($type, 'string');
-            }
-        }
+//
+//            foreach ($geometries as $type) {
+//                $dbPlatform->registerDoctrineTypeMapping($type, 'string');
+//            }
+//        }
     }
 
     /**

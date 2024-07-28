@@ -13,7 +13,7 @@ class Blueprint extends IlluminateBlueprint
      * @param  string  $column
      * @param  null|int  $srid
      */
-    public function geometry($column, $srid = null): Fluent
+    public function geometry($column, $subtype = null, $srid = 0): Fluent
     {
         return $this->addColumn('geometry', $column, compact('srid'));
     }

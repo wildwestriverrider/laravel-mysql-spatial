@@ -3,9 +3,11 @@
 namespace Wildwestriverrider\LaravelMysqlSpatial;
 
 use Doctrine\DBAL\Exception;
+use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Types\Type as DoctrineType;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\DatabaseServiceProvider;
+use Illuminate\Support\Facades\DB;
 use Wildwestriverrider\LaravelMysqlSpatial\Connectors\ConnectionFactory;
 use Wildwestriverrider\LaravelMysqlSpatial\Doctrine\Geometry;
 use Wildwestriverrider\LaravelMysqlSpatial\Doctrine\GeometryCollection;
@@ -59,10 +61,9 @@ class SpatialServiceProvider extends DatabaseServiceProvider
                 'multipolygon' => MultiPolygon::class,
                 'geometrycollection' => GeometryCollection::class,
             ];
-            $typeNames = array_keys(DoctrineType::getTypesMap());
             foreach ($geometries as $type => $class) {
-                if (! in_array($type, $typeNames)) {
-                    DoctrineType::addType($type, $class);
+                if (!Type::hasType($type)) {
+                    Type::addType($type, $class);
                 }
             }
         }

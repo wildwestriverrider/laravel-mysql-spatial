@@ -22,6 +22,19 @@ class BlueprintTest extends BaseTestCase
             ->makePartial()->shouldAllowMockingProtectedMethods();
     }
 
+    public function tearDown(): void
+    {
+        Mockery::close();
+
+        // Reset any custom error handlers
+        restore_error_handler();
+
+        // Reset any custom exception handlers
+        restore_exception_handler();
+
+        parent::tearDown();
+    }
+
     public function testGeometry()
     {
         $expectedCol = new ColumnDefinition([
@@ -188,7 +201,7 @@ class BlueprintTest extends BaseTestCase
             ->once()
             ->andReturn($expectedCol);
 
-        $result = $this->blueprint->geometry('col', 4326);
+        $result = $this->blueprint->geometry('col', null,4326);
 
         $this->assertSame($expectedCol, $result);
     }

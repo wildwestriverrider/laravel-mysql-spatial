@@ -5,6 +5,19 @@ use Wildwestriverrider\LaravelMysqlSpatial\Types\Point;
 
 class MultiPointTest extends BaseTestCase
 {
+    public function tearDown(): void
+    {
+        Mockery::close();
+
+        // Reset any custom error handlers
+        restore_error_handler();
+
+        // Reset any custom exception handlers
+        restore_exception_handler();
+
+        parent::tearDown();
+    }
+
     public function testFromWKT()
     {
         $multipoint = MultiPoint::fromWKT('MULTIPOINT((0 0),(1 0),(1 1))');

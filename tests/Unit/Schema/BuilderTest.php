@@ -10,6 +10,19 @@ use Wildwestriverrider\LaravelMysqlSpatial\Schema\Builder;
 
 class BuilderTest extends BaseTestCase
 {
+    public function tearDown(): void
+    {
+        Mockery::close();
+
+        // Reset any custom error handlers
+        restore_error_handler();
+
+        // Reset any custom exception handlers
+        restore_exception_handler();
+
+        parent::tearDown();
+    }
+
     public function testReturnsCorrectBlueprint()
     {
         $connection = Mockery::mock(MysqlConnection::class);
