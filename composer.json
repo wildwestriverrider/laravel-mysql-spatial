@@ -15,7 +15,7 @@
         }
     ],
     "require": {
-        "php": ">=8.2",
+        "php": "8.1| >=8.2",
         "ext-pdo": "*",
         "ext-json": "*",
         "geo-io/wkb-parser": "^v1.0.2",
