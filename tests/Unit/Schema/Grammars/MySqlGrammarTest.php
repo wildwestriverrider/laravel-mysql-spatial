@@ -198,9 +198,9 @@ class MySqlGrammarTest extends BaseTestCase
         $dropStatements = $blueprint->toSql($this->getConnection(), $this->getGrammar());
 
         $expectedSql = 'alter table `test` drop index `test_foo_spatial`';
-        $this->assertEquals(4, count($dropStatements));
-        $this->assertEquals($expectedSql, $dropStatements[2]);
+        $this->assertEquals(5, count($dropStatements));
         $this->assertEquals($expectedSql, $dropStatements[3]);
+        $this->assertEquals($expectedSql, $dropStatements[4]);
     }
 
     //    /**
