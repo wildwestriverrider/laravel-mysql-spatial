@@ -23,7 +23,7 @@ class ConnectionFactoryTest extends BaseTestCase
     public function testMakeCallsCreateConnection()
     {
         $dsn = 'mysql:dbname=spatial_test;host=127.0.0.1;port=3306;';
-        $pdo = new PDO($dsn, 'root', '');
+        $pdo = new PDO($dsn, 'root', 'root');
 
         //$pdo = new PDOStub('127.0.0.1');
 
