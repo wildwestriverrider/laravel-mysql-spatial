@@ -4,7 +4,5 @@ namespace Stubs;
 
 class PDOStub extends \PDO
 {
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 }

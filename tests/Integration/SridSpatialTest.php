@@ -31,7 +31,7 @@ class SridSpatialTest extends IntegrationBaseTestCase
 
     public function testInsertPointWithSrid()
     {
-        $geo = new WithSridModel();
+        $geo = new WithSridModel;
         $geo->location = new Point(1, 2, 3857);
         $geo->save();
         $this->assertDatabaseHas('with_srid', ['id' => $geo->id]);
@@ -39,7 +39,7 @@ class SridSpatialTest extends IntegrationBaseTestCase
 
     public function testInsertLineStringWithSrid()
     {
-        $geo = new WithSridModel();
+        $geo = new WithSridModel;
 
         $geo->location = new Point(1, 2, 3857);
         $geo->line = new LineString([new Point(1, 1), new Point(2, 2)], 3857);
@@ -49,7 +49,7 @@ class SridSpatialTest extends IntegrationBaseTestCase
 
     public function testInsertPolygonWithSrid()
     {
-        $geo = new WithSridModel();
+        $geo = new WithSridModel;
 
         $geo->location = new Point(1, 2, 3857);
         $geo->shape = Polygon::fromWKT('POLYGON((0 10,10 10,10 0,0 0,0 10))', 3857);
@@ -59,7 +59,7 @@ class SridSpatialTest extends IntegrationBaseTestCase
 
     public function testInsertMultiPointWithSrid()
     {
-        $geo = new WithSridModel();
+        $geo = new WithSridModel;
 
         $geo->location = new Point(1, 2, 3857);
         $geo->multi_locations = new MultiPoint([new Point(1, 1), new Point(2, 2)], 3857);
@@ -69,7 +69,7 @@ class SridSpatialTest extends IntegrationBaseTestCase
 
     public function testInsertMultiPolygonWithSrid()
     {
-        $geo = new WithSridModel();
+        $geo = new WithSridModel;
 
         $geo->location = new Point(1, 2, 3857);
 
@@ -83,7 +83,7 @@ class SridSpatialTest extends IntegrationBaseTestCase
 
     public function testInsertGeometryCollectionWithSrid()
     {
-        $geo = new WithSridModel();
+        $geo = new WithSridModel;
 
         $geo->location = new Point(1, 2, 3857);
 
@@ -98,7 +98,7 @@ class SridSpatialTest extends IntegrationBaseTestCase
 
     public function testUpdateWithSrid()
     {
-        $geo = new WithSridModel();
+        $geo = new WithSridModel;
         $geo->location = new Point(1, 2, 3857);
         $geo->save();
 
@@ -119,11 +119,9 @@ class SridSpatialTest extends IntegrationBaseTestCase
 
     public function testInsertPointWithWrongSrid()
     {
-        $geo = new WithSridModel();
+        $geo = new WithSridModel;
 
         $geo->location = new Point(1, 2);
-
-
 
         $this->assertException(
             Illuminate\Database\QueryException::class,
@@ -140,7 +138,7 @@ class SridSpatialTest extends IntegrationBaseTestCase
 
     public function testGeometryInsertedHasRightSrid()
     {
-        $geo = new WithSridModel();
+        $geo = new WithSridModel;
         $geo->location = new Point(1, 2, 3857);
         $geo->save();
 

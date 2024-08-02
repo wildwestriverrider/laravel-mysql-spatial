@@ -27,21 +27,21 @@ class ConnectionFactoryTest extends BaseTestCase
 
         //$pdo = new PDOStub('127.0.0.1');
 
-        $factory = Mockery::mock(ConnectionFactory::class, [new Container()])->makePartial();
+        $factory = Mockery::mock(ConnectionFactory::class, [new Container])->makePartial();
         $factory->shouldAllowMockingProtectedMethods();
         $conn = $factory->createConnection('mysql', $pdo, 'database');
 
         $this->assertInstanceOf(MysqlConnection::class, $conn);
     }
-//
-//    public function testCreateConnectionDifferentDriver()
-//    {
-//        $pdo = new PDOStub();
-//
-//        $factory = Mockery::mock(ConnectionFactory::class, [new Container()])->makePartial();
-//        $factory->shouldAllowMockingProtectedMethods();
-//        $conn = $factory->createConnection('pgsql', $pdo, 'database');
-//
-//        $this->assertInstanceOf(\Illuminate\Database\PostgresConnection::class, $conn);
-//    }
+    //
+    //    public function testCreateConnectionDifferentDriver()
+    //    {
+    //        $pdo = new PDOStub();
+    //
+    //        $factory = Mockery::mock(ConnectionFactory::class, [new Container()])->makePartial();
+    //        $factory->shouldAllowMockingProtectedMethods();
+    //        $conn = $factory->createConnection('pgsql', $pdo, 'database');
+    //
+    //        $this->assertInstanceOf(\Illuminate\Database\PostgresConnection::class, $conn);
+    //    }
 }

@@ -102,7 +102,7 @@ class MySqlGrammarTest extends BaseTestCase
     public function testAddingGeometryWithSrid()
     {
         $blueprint = new Blueprint('test');
-        $blueprint->geometry('foo', null,4326);
+        $blueprint->geometry('foo', null, 4326);
         $statements = $blueprint->toSql($this->getConnection(), $this->getGrammar());
 
         $this->assertEquals(1, count($statements));
@@ -203,16 +203,16 @@ class MySqlGrammarTest extends BaseTestCase
         $this->assertEquals($expectedSql, $dropStatements[4]);
     }
 
-//    /**
-//     * @return Connection
-//     */
-//    protected function getConnection()
-//    {
-//        return Mockery::mock(MysqlConnection::class);
-//    }
+    //    /**
+    //     * @return Connection
+    //     */
+    //    protected function getConnection()
+    //    {
+    //        return Mockery::mock(MysqlConnection::class);
+    //    }
 
     protected function getGrammar()
     {
-        return new MySqlGrammar();
+        return new MySqlGrammar;
     }
 }

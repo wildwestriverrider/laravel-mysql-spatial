@@ -48,7 +48,7 @@ abstract class IntegrationBaseTestCase extends \Orchestra\Testbench\TestCase
         $this->after_fix = $this->isMySQL8AfterFix();
 
         $this->onMigrations(function ($migrationClass) {
-            (new $migrationClass())->up();
+            (new $migrationClass)->up();
         });
 
         //\DB::listen(function($sql) {
@@ -59,7 +59,7 @@ abstract class IntegrationBaseTestCase extends \Orchestra\Testbench\TestCase
     public function tearDown(): void
     {
         $this->onMigrations(function ($migrationClass) {
-            (new $migrationClass())->down();
+            (new $migrationClass)->down();
         }, true);
 
         Mockery::close();

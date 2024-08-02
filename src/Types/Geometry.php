@@ -7,7 +7,7 @@ use GeoJson\GeoJson;
 use Illuminate\Contracts\Support\Jsonable;
 use Wildwestriverrider\LaravelMysqlSpatial\Exceptions\UnknownWKTTypeException;
 
-abstract class Geometry implements GeometryInterface, Jsonable, \JsonSerializable
+abstract class Geometry implements \JsonSerializable, GeometryInterface, Jsonable
 {
     protected static array $wkb_types = [
         1 => Point::class,
@@ -75,7 +75,7 @@ abstract class Geometry implements GeometryInterface, Jsonable, \JsonSerializabl
         $srid = unpack('L', $srid)[1];
 
         $wkb = substr($wkb, 4);
-        $parser = new Parser(new Factory());
+        $parser = new Parser(new Factory);
 
         /** @var Geometry $parsed */
         $parsed = $parser->parse($wkb);

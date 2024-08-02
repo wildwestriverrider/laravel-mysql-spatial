@@ -19,27 +19,27 @@ class MysqlConnection extends IlluminateMySqlConnection
     {
         parent::__construct($pdo, $database, $tablePrefix, $config);
 
-//        if (class_exists(DoctrineType::class)) {
-//            // Prevent geometry type fields from throwing a 'type not found' error when changing them
-//            $geometries = [
-//                'geometry',
-//                'point',
-//                'linestring',
-//                'polygon',
-//                'multipoint',
-//                'multilinestring',
-//                'multipolygon',
-//                'geometrycollection',
-//                'geomcollection',
-//            ];
-//
-//            $dbPlatform = $this->getDoctrineSchemaManager()
-//                ->getDatabasePlatform();
-//
-//            foreach ($geometries as $type) {
-//                $dbPlatform->registerDoctrineTypeMapping($type, 'string');
-//            }
-//        }
+        //        if (class_exists(DoctrineType::class)) {
+        //            // Prevent geometry type fields from throwing a 'type not found' error when changing them
+        //            $geometries = [
+        //                'geometry',
+        //                'point',
+        //                'linestring',
+        //                'polygon',
+        //                'multipoint',
+        //                'multilinestring',
+        //                'multipolygon',
+        //                'geometrycollection',
+        //                'geomcollection',
+        //            ];
+        //
+        //            $dbPlatform = $this->getDoctrineSchemaManager()
+        //                ->getDatabasePlatform();
+        //
+        //            foreach ($geometries as $type) {
+        //                $dbPlatform->registerDoctrineTypeMapping($type, 'string');
+        //            }
+        //        }
     }
 
     /**
@@ -47,13 +47,11 @@ class MysqlConnection extends IlluminateMySqlConnection
      */
     protected function getDefaultSchemaGrammar(): Grammar
     {
-        return $this->withTablePrefix(new MySqlGrammar());
+        return $this->withTablePrefix(new MySqlGrammar);
     }
 
     /**
      * Get a schema builder instance for the connection.
-     *
-     * @return MySqlBuilder|Builder
      */
     public function getSchemaBuilder(): MySqlBuilder|Builder
     {

@@ -20,8 +20,8 @@ class Builder extends EloquentBuilder
     }
 
     #[Pure]
- protected function asWKT(GeometryInterface $geometry): SpatialExpression
- {
-     return new SpatialExpression($geometry);
- }
+    protected function asWKT(GeometryInterface $geometry): SpatialExpression
+    {
+        return new SpatialExpression($geometry);
+    }
 }

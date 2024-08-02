@@ -12,7 +12,7 @@ use InvalidArgumentException;
 use IteratorAggregate;
 use Wildwestriverrider\LaravelMysqlSpatial\Exceptions\InvalidGeoJsonException;
 
-class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAccess, Arrayable, Countable
+class GeometryCollection extends Geometry implements Arrayable, ArrayAccess, Countable, IteratorAggregate
 {
     /**
      * The minimum number of items required to create this collection.
