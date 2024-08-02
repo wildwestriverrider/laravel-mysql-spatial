@@ -8,7 +8,6 @@ use Wildwestriverrider\LaravelMysqlSpatial\Types\Polygon;
 
 class GeometryCollectionTest extends BaseTestCase
 {
-
     public function tearDown(): void
     {
         Mockery::close();

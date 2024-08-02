@@ -33,7 +33,7 @@ class BuilderTest extends BaseTestCase
             ->andReturn($this->queryBuilder);
 
         $this->builder = new Builder($this->queryBuilder);
-        $this->builder->setModel(new TestBuilderModel());
+        $this->builder->setModel(new TestBuilderModel);
     }
 
     public function testUpdatePoint()

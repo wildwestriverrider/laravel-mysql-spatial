@@ -121,7 +121,7 @@ trait SpatialTrait
     public function isColumnAllowed($geometryColumn): bool
     {
         if (! in_array($geometryColumn, $this->getSpatialFields())) {
-            throw new SpatialFieldsNotDefinedException();
+            throw new SpatialFieldsNotDefinedException;
         }
 
         return true;

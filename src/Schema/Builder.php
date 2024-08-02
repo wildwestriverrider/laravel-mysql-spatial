@@ -11,9 +11,8 @@ class Builder extends MySqlBuilder
      * Create a new command set with a Closure.
      *
      * @param  string  $table
-     * @param  Closure  $callback
      */
-    protected function createBlueprint($table, Closure $callback = null): Blueprint
+    protected function createBlueprint($table, ?Closure $callback = null): Blueprint
     {
         return new Blueprint($table, $callback);
     }

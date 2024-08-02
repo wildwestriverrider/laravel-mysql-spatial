@@ -7,7 +7,6 @@ use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Types\Type as DoctrineType;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\DatabaseServiceProvider;
-use Illuminate\Support\Facades\DB;
 use Wildwestriverrider\LaravelMysqlSpatial\Connectors\ConnectionFactory;
 use Wildwestriverrider\LaravelMysqlSpatial\Doctrine\Geometry;
 use Wildwestriverrider\LaravelMysqlSpatial\Doctrine\GeometryCollection;
@@ -26,7 +25,6 @@ class SpatialServiceProvider extends DatabaseServiceProvider
     /**
      * Register the service provider.
      *
-     * @return void
      * @throws Exception
      */
     public function register(): void
@@ -62,7 +60,7 @@ class SpatialServiceProvider extends DatabaseServiceProvider
                 'geometrycollection' => GeometryCollection::class,
             ];
             foreach ($geometries as $type => $class) {
-                if (!Type::hasType($type)) {
+                if (! Type::hasType($type)) {
                     Type::addType($type, $class);
                 }
             }

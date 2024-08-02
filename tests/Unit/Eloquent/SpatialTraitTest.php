@@ -17,7 +17,7 @@ class SpatialTraitTest extends BaseTestCase
 
     public function setUp(): void
     {
-        $this->model = new TestModel();
+        $this->model = new TestModel;
         $this->queries = &$this->model->getConnection()->getPdo()->queries;
     }
 
@@ -213,7 +213,7 @@ class SpatialTraitTest extends BaseTestCase
 
     public function testSpatialFieldsNotDefinedException()
     {
-        $model = new TestNoSpatialModel();
+        $model = new TestNoSpatialModel;
         $this->assertException(
             SpatialFieldsNotDefinedException::class,
             'TestNoSpatialModel has to define $spatialFields'
