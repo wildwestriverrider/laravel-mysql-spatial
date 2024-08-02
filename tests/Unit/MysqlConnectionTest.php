@@ -16,7 +16,7 @@ class MysqlConnectionTest extends TestCase
     protected function setUp(): void
     {
         $dsn = 'mysql:dbname=spatial_test;host=127.0.0.1;port=3306;';
-        $pdo = new PDO($dsn, 'root', '');
+        $pdo = new PDO($dsn, 'root', 'root');
         $mysqlConfig = ['driver' => 'mysql', 'prefix' => 'prefix', 'database' => 'database', 'name' => 'foo'];
         $this->mysqlConnection = new MysqlConnection($pdo, 'database', 'prefix', $mysqlConfig);
     }
