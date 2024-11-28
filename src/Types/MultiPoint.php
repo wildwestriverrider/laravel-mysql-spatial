@@ -15,12 +15,12 @@ class MultiPoint extends PointCollection
      */
     protected $minimumCollectionItems = 1;
 
-    public function toWKT()
+    public function toWKT(): string
     {
         return sprintf('MULTIPOINT(%s)', (string) $this);
     }
 
-    public static function fromWkt($wkt, $srid = 0)
+    public static function fromWkt($wkt, $srid = 0): static
     {
         $wktArgument = Geometry::getWKTArgument($wkt);
 
@@ -67,9 +67,9 @@ class MultiPoint extends PointCollection
     /**
      * Convert to GeoJson MultiPoint that is jsonable to GeoJSON.
      *
-     * @return \GeoJson\Geometry\MultiPoint
+     * @return GeoJsonMultiPoint
      */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): GeoJsonMultiPoint
     {
         $points = [];
         foreach ($this->items as $point) {

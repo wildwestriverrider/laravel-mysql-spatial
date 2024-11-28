@@ -159,7 +159,7 @@ class GeometryCollection extends Geometry implements Arrayable, ArrayAccess, Cou
     /**
      * Checks whether the items are valid to create this collection.
      */
-    protected function validateItems(array $items)
+    protected function validateItems(array $items): void
     {
         $this->validateItemCount($items);
 
@@ -174,7 +174,7 @@ class GeometryCollection extends Geometry implements Arrayable, ArrayAccess, Cou
      *
      * @see $minimumCollectionItems
      */
-    protected function validateItemCount(array $items)
+    protected function validateItemCount(array $items): void
     {
         if (count($items) < $this->minimumCollectionItems) {
             $entries = $this->minimumCollectionItems === 1 ? 'entry' : 'entries';
@@ -194,7 +194,7 @@ class GeometryCollection extends Geometry implements Arrayable, ArrayAccess, Cou
      *
      * @see $collectionItemType
      */
-    protected function validateItemType($item)
+    protected function validateItemType($item): void
     {
         if (! $item instanceof $this->collectionItemType) {
             throw new InvalidArgumentException(sprintf(

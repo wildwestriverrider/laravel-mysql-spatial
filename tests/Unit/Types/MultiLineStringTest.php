@@ -47,7 +47,7 @@ class MultiLineStringTest extends BaseTestCase
         $multiLineString = MultiLineString::fromJson('{"type":"MultiLineString","coordinates":[[[1,1],[1,2],[1,3]],[[2,1],[2,2],[2,3]]]}');
         $this->assertInstanceOf(MultiLineString::class, $multiLineString);
         $multiLineStringLineStrings = $multiLineString->getGeometries();
-        $this->assertEquals(2, count($multiLineStringLineStrings));
+        $this->assertCount(2, $multiLineStringLineStrings);
         $this->assertEquals(new Point(1, 1), $multiLineStringLineStrings[0][0]);
         $this->assertEquals(new Point(2, 1), $multiLineStringLineStrings[0][1]);
         $this->assertEquals(new Point(3, 1), $multiLineStringLineStrings[0][2]);
@@ -79,7 +79,7 @@ class MultiLineStringTest extends BaseTestCase
             InvalidArgumentException::class,
             'Wildwestriverrider\LaravelMysqlSpatial\Types\MultiLineString must contain at least 1 entry'
         );
-        $multilinestring = new MultiLineString([]);
+        new MultiLineString([]);
     }
 
     public function testInvalidArgumentExceptionNotArrayOfLineString()
@@ -88,7 +88,7 @@ class MultiLineStringTest extends BaseTestCase
             InvalidArgumentException::class,
             'Wildwestriverrider\LaravelMysqlSpatial\Types\MultiLineString must be a collection of Wildwestriverrider\LaravelMysqlSpatial\Types\LineString'
         );
-        $multilinestring = new MultiLineString([
+        new MultiLineString([
             new LineString([new Point(0, 0), new Point(1, 1)]),
             new Point(0, 1),
         ]);

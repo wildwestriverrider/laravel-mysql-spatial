@@ -44,14 +44,14 @@ abstract class BaseTestCase extends TestCase
         parent::setUp();
     }
 
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
             SpatialServiceProvider::class,
         ];
     }
 
-    public function getEnvironmentSetUp($app)
+    public function getEnvironmentSetUp($app): void
     {
         config()->set('database.default', 'spatial_test');
 
@@ -67,7 +67,7 @@ abstract class BaseTestCase extends TestCase
      * @param  \Illuminate\Foundation\Application  $app
      * @return void
      */
-    protected function defineEnvironment($app)
+    protected function defineEnvironment($app): void
     {
         // Setup default database to use sqlite :memory:
         config()->set('database.default', 'spatial_test');
@@ -78,7 +78,7 @@ abstract class BaseTestCase extends TestCase
         ]);
     }
 
-    protected function assertException($exceptionName, $exceptionMessage = '', $exceptionCode = 0)
+    protected function assertException($exceptionName, $exceptionMessage = '', $exceptionCode = 0): void
     {
         if (method_exists(parent::class, 'expectException')) {
             parent::expectException($exceptionName);

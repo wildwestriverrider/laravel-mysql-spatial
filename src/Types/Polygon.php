@@ -9,7 +9,7 @@ use Wildwestriverrider\LaravelMysqlSpatial\Exceptions\InvalidGeoJsonException;
 
 class Polygon extends MultiLineString
 {
-    public function toWKT()
+    public function toWKT(): string
     {
         return sprintf('POLYGON(%s)', (string) $this);
     }
@@ -39,7 +39,7 @@ class Polygon extends MultiLineString
     /**
      * Convert to GeoJson Polygon that is jsonable to GeoJSON.
      **/
-    public function jsonSerialize(): GeoJsonPolygon|LinearRing
+    public function jsonSerialize(): GeoJsonPolygon
     {
         $linearRings = [];
         foreach ($this->items as $lineString) {

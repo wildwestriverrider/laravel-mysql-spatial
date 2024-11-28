@@ -135,7 +135,7 @@ class GeometryCollectionTest extends BaseTestCase
         $geometryCollection = GeometryCollection::fromJson('{"type":"FeatureCollection","features":[{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[1,2]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[3,4]}}]}');
         $this->assertInstanceOf(GeometryCollection::class, $geometryCollection);
         $geometryCollectionPoints = $geometryCollection->getGeometries();
-        $this->assertEquals(2, count($geometryCollectionPoints));
+        $this->assertCount(2, $geometryCollectionPoints);
         $this->assertEquals(new Point(2, 1), $geometryCollectionPoints[0]);
         $this->assertEquals(new Point(4, 3), $geometryCollectionPoints[1]);
     }
@@ -149,12 +149,12 @@ class GeometryCollectionTest extends BaseTestCase
         GeometryCollection::fromJson('{"type":"Point","coordinates":[3.4,1.2]}');
     }
 
-    private function getGeometryCollection()
+    private function getGeometryCollection(): GeometryCollection
     {
         return new GeometryCollection([$this->getLineString(), $this->getPoint()]);
     }
 
-    private function getLineString()
+    private function getLineString(): LineString
     {
         return new LineString([
             new Point(0, 0),
@@ -165,12 +165,12 @@ class GeometryCollectionTest extends BaseTestCase
         ]);
     }
 
-    private function getPoint()
+    private function getPoint(): Point
     {
         return new Point(100, 200);
     }
 
-    private function getPolygon()
+    private function getPolygon(): Polygon
     {
         return new Polygon([
             new LineString([

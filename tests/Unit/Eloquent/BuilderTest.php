@@ -1,12 +1,9 @@
 <?php
 
-namespace Eloquent;
 
-use BaseTestCase;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Query\Grammars\MySqlGrammar;
-use Mockery;
 use Wildwestriverrider\LaravelMysqlSpatial\Eloquent\Builder;
 use Wildwestriverrider\LaravelMysqlSpatial\Eloquent\SpatialExpression;
 use Wildwestriverrider\LaravelMysqlSpatial\Eloquent\SpatialTrait;
@@ -17,9 +14,9 @@ use Wildwestriverrider\LaravelMysqlSpatial\Types\Polygon;
 
 class BuilderTest extends BaseTestCase
 {
-    protected $builder;
+    protected Builder $builder;
 
-    protected $queryBuilder;
+    protected QueryBuilder $queryBuilder;
 
     protected function setUp(): void
     {
@@ -137,5 +134,5 @@ class TestBuilderModel extends Model
 
     public $timestamps = false;
 
-    protected $spatialFields = ['point', 'linestring', 'polygon'];
+    protected array $spatialFields = ['point', 'linestring', 'polygon'];
 }

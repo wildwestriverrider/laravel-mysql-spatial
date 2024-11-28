@@ -49,24 +49,16 @@ abstract class Geometry implements \JsonSerializable, GeometryInterface, Jsonabl
         $left = strpos($value, '(');
         $type = trim(substr($value, 0, $left));
 
-        switch (strtoupper($type)) {
-            case 'POINT':
-                return Point::class;
-            case 'LINESTRING':
-                return LineString::class;
-            case 'POLYGON':
-                return Polygon::class;
-            case 'MULTIPOINT':
-                return MultiPoint::class;
-            case 'MULTILINESTRING':
-                return MultiLineString::class;
-            case 'MULTIPOLYGON':
-                return MultiPolygon::class;
-            case 'GEOMETRYCOLLECTION':
-                return GeometryCollection::class;
-            default:
-                throw new UnknownWKTTypeException('Type was '.$type);
-        }
+        return match (strtoupper($type)) {
+            'POINT' => Point::class,
+            'LINESTRING' => LineString::class,
+            'POLYGON' => Polygon::class,
+            'MULTIPOINT' => MultiPoint::class,
+            'MULTILINESTRING' => MultiLineString::class,
+            'MULTIPOLYGON' => MultiPolygon::class,
+            'GEOMETRYCOLLECTION' => GeometryCollection::class,
+            default => throw new UnknownWKTTypeException('Type was ' . $type),
+        };
     }
 
     public static function fromWKB($wkb): Geometry

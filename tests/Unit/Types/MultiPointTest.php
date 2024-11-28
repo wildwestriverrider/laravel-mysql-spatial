@@ -47,7 +47,7 @@ class MultiPointTest extends BaseTestCase
         $multiPoint = MultiPoint::fromJson('{"type":"MultiPoint","coordinates":[[1,1],[2,1],[2,2]]}');
         $this->assertInstanceOf(MultiPoint::class, $multiPoint);
         $multiPointPoints = $multiPoint->getGeometries();
-        $this->assertEquals(3, count($multiPointPoints));
+        $this->assertCount(3, $multiPointPoints);
         $this->assertEquals(new Point(1, 1), $multiPointPoints[0]);
         $this->assertEquals(new Point(1, 2), $multiPointPoints[1]);
         $this->assertEquals(new Point(2, 2), $multiPointPoints[2]);
@@ -78,7 +78,7 @@ class MultiPointTest extends BaseTestCase
             InvalidArgumentException::class,
             'Wildwestriverrider\LaravelMysqlSpatial\Types\MultiPoint must contain at least 1 entry'
         );
-        $multipoint = new MultiPoint([]);
+        new MultiPoint([]);
     }
 
     public function testInvalidArgumentExceptionNotArrayOfLineString()
@@ -87,7 +87,7 @@ class MultiPointTest extends BaseTestCase
             InvalidArgumentException::class,
             'Wildwestriverrider\LaravelMysqlSpatial\Types\MultiPoint must be a collection of Wildwestriverrider\LaravelMysqlSpatial\Types\Point'
         );
-        $multipoint = new MultiPoint([
+        new MultiPoint([
             new Point(0, 0),
             1,
         ]);

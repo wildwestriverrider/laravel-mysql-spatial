@@ -22,7 +22,7 @@ class MultiPolygon extends GeometryCollection
      */
     protected $collectionItemType = Polygon::class;
 
-    public function toWKT()
+    public function toWKT(): string
     {
         return sprintf('MULTIPOLYGON(%s)', (string) $this);
     }
@@ -49,7 +49,7 @@ class MultiPolygon extends GeometryCollection
      *
      * @return array|Polygon[]
      */
-    public function getPolygons()
+    public function getPolygons(): array
     {
         return $this->items;
     }
@@ -70,7 +70,7 @@ class MultiPolygon extends GeometryCollection
      *
      * @return array
      */
-    protected static function assembleParts(array $parts)
+    protected static function assembleParts(array $parts): array
     {
         $polygons = [];
         $count = count($parts);
@@ -124,9 +124,9 @@ class MultiPolygon extends GeometryCollection
     /**
      * Convert to GeoJson MultiPolygon that is jsonable to GeoJSON.
      *
-     * @return \GeoJson\Geometry\MultiPolygon
+     * @return GeoJsonMultiPolygon
      */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): GeoJsonMultiPolygon
     {
         $polygons = [];
         foreach ($this->items as $polygon) {

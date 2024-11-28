@@ -573,14 +573,14 @@ class TestNoSpatialModel extends Model
 
 class TestPDO extends PDO
 {
-    public $queries = [];
+    public array $queries = [];
 
     public $counter = 1;
 
     public function __construct()
     {
         $dsn = 'mysql:dbname=spatial_test;host=127.0.0.1;port=3306;';
-        parent::__construct($dsn, 'root', 'root');
+        parent::__construct($dsn, 'root', '');
         //        $mysqlConfig = ['driver' => 'mysql', 'prefix' => 'prefix', 'database' => 'database', 'name' => 'foo'];
         //        $this->mysqlConnection = new MysqlConnection($pdo, 'database', 'prefix', $mysqlConfig);
     }

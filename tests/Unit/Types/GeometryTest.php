@@ -92,7 +92,7 @@ class GeometryTest extends BaseTestCase
         $polygon1 = Geometry::fromJson('{"type": "Polygon","coordinates":[[[1,1],[2,1],[2,2],[1,2],[1,1]]]}');
         $this->assertInstanceOf(Polygon::class, $polygon1);
         $polygonLineStrings1 = $polygon1->getGeometries();
-        $this->assertEquals(1, count($polygonLineStrings1));
+        $this->assertCount(1, $polygonLineStrings1);
         $this->assertEquals(new Point(1, 1), $polygonLineStrings1[0][0]);
         $this->assertEquals(new Point(1, 2), $polygonLineStrings1[0][1]);
         $this->assertEquals(new Point(2, 2), $polygonLineStrings1[0][2]);
@@ -120,7 +120,7 @@ class GeometryTest extends BaseTestCase
         $multiPoint = Geometry::fromJson('{"type":"MultiPoint","coordinates":[[1,1],[2,1],[2,2]]}');
         $this->assertInstanceOf(MultiPoint::class, $multiPoint);
         $multiPointPoints = $multiPoint->getGeometries();
-        $this->assertEquals(3, count($multiPointPoints));
+        $this->assertCount(3, $multiPointPoints);
         $this->assertEquals(new Point(1, 1), $multiPointPoints[0]);
         $this->assertEquals(new Point(1, 2), $multiPointPoints[1]);
         $this->assertEquals(new Point(2, 2), $multiPointPoints[2]);
@@ -131,7 +131,7 @@ class GeometryTest extends BaseTestCase
         $multiLineString = Geometry::fromJson('{"type":"MultiLineString","coordinates":[[[1,1],[1,2],[1,3]],[[2,1],[2,2],[2,3]]]}');
         $this->assertInstanceOf(MultiLineString::class, $multiLineString);
         $multiLineStringLineStrings = $multiLineString->getGeometries();
-        $this->assertEquals(2, count($multiLineStringLineStrings));
+        $this->assertCount(2, $multiLineStringLineStrings);
         $this->assertEquals(new Point(1, 1), $multiLineStringLineStrings[0][0]);
         $this->assertEquals(new Point(2, 1), $multiLineStringLineStrings[0][1]);
         $this->assertEquals(new Point(3, 1), $multiLineStringLineStrings[0][2]);
@@ -145,7 +145,7 @@ class GeometryTest extends BaseTestCase
         $multiPolygon = Geometry::fromJson('{"type":"MultiPolygon","coordinates":[[[[1,1],[1,2],[2,2],[2,1],[1,1]]],[[[0,0],[0,1],[1,1],[1,0],[0,0]]]]}');
         $this->assertInstanceOf(MultiPolygon::class, $multiPolygon);
         $multiPolygonPolygons = $multiPolygon->getGeometries();
-        $this->assertEquals(2, count($multiPolygonPolygons));
+        $this->assertCount(2, $multiPolygonPolygons);
         $this->assertEquals(new Polygon([new LineString([
             new Point(1, 1),
             new Point(2, 1),
@@ -175,7 +175,7 @@ class GeometryTest extends BaseTestCase
         $geometryCollection = Geometry::fromJson('{"type":"FeatureCollection","features":[{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[1,2]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[3,4]}}]}');
         $this->assertInstanceOf(GeometryCollection::class, $geometryCollection);
         $geometryCollectionPoints = $geometryCollection->getGeometries();
-        $this->assertEquals(2, count($geometryCollectionPoints));
+        $this->assertCount(2, $geometryCollectionPoints);
         $this->assertEquals(new Point(2, 1), $geometryCollectionPoints[0]);
         $this->assertEquals(new Point(4, 3), $geometryCollectionPoints[1]);
     }

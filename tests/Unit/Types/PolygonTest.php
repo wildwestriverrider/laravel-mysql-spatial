@@ -6,7 +6,7 @@ use Wildwestriverrider\LaravelMysqlSpatial\Types\Polygon;
 
 class PolygonTest extends BaseTestCase
 {
-    private $polygon;
+    private Polygon $polygon;
 
     protected function setUp(): void
     {
@@ -41,7 +41,7 @@ class PolygonTest extends BaseTestCase
         $polygon = Polygon::fromJson('{"type":"Polygon","coordinates":[[[1,1],[2,1],[2,2],[1,2],[1,1]],[[1.2,1.2],[1.6,1.2],[1.6,1.8],[1.2,1.8],[1.2,1.2]]]}');
         $this->assertInstanceOf(Polygon::class, $polygon);
         $polygonLineStrings = $polygon->getGeometries();
-        $this->assertEquals(2, count($polygonLineStrings));
+        $this->assertCount(2, $polygonLineStrings);
         $this->assertEquals(new Point(1, 1), $polygonLineStrings[0][0]);
         $this->assertEquals(new Point(1, 2), $polygonLineStrings[0][1]);
         $this->assertEquals(new Point(2, 2), $polygonLineStrings[0][2]);

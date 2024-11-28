@@ -14,7 +14,7 @@ abstract class PointCollection extends GeometryCollection
      */
     protected $collectionItemType = Point::class;
 
-    public function toPairList()
+    public function toPairList(): string
     {
         return implode(',', array_map(function (Point $point) {
             return $point->toPair();
@@ -31,7 +31,7 @@ abstract class PointCollection extends GeometryCollection
     /**
      * @return array|\Wildwestriverrider\LaravelMysqlSpatial\Types\Point[]
      */
-    public function getPoints()
+    public function getPoints(): array
     {
         return $this->items;
     }
@@ -41,7 +41,7 @@ abstract class PointCollection extends GeometryCollection
      * @see array_unshift
      * @see ArrayAccess
      */
-    public function prependPoint(Point $point)
+    public function prependPoint(Point $point): void
     {
         array_unshift($this->items, $point);
     }
@@ -50,7 +50,7 @@ abstract class PointCollection extends GeometryCollection
      * @deprecated 2.1.0 Use $multipoint[] = $point; instead
      * @see ArrayAccess
      */
-    public function appendPoint(Point $point)
+    public function appendPoint(Point $point): void
     {
         $this->items[] = $point;
     }
@@ -60,7 +60,7 @@ abstract class PointCollection extends GeometryCollection
      * @see array_splice
      * @see ArrayAccess
      */
-    public function insertPoint($index, Point $point)
+    public function insertPoint($index, Point $point): void
     {
         if (count($this->items) - 1 < $index) {
             throw new InvalidArgumentException('$index is greater than the size of the array');

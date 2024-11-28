@@ -59,7 +59,7 @@ class MultiPolygonTest extends BaseTestCase
         $multiPolygon = MultiPolygon::fromJson('{"type":"MultiPolygon","coordinates":[[[[1,1],[1,2],[2,2],[2,1],[1,1]]],[[[0,0],[0,1],[1,1],[1,0],[0,0]]]]}');
         $this->assertInstanceOf(MultiPolygon::class, $multiPolygon);
         $multiPolygonPolygons = $multiPolygon->getGeometries();
-        $this->assertEquals(2, count($multiPolygonPolygons));
+        $this->assertCount(2, $multiPolygonPolygons);
         $this->assertEquals(new Polygon([new LineString([
             new Point(1, 1),
             new Point(2, 1),
@@ -97,7 +97,7 @@ class MultiPolygonTest extends BaseTestCase
             InvalidArgumentException::class,
             'Wildwestriverrider\LaravelMysqlSpatial\Types\MultiPolygon must contain at least 1 entry'
         );
-        $multipolygon = new MultiPolygon([]);
+        new MultiPolygon([]);
     }
 
     public function testInvalidArgumentExceptionNotArrayOfPolygon()
@@ -106,7 +106,7 @@ class MultiPolygonTest extends BaseTestCase
             InvalidArgumentException::class,
             'Wildwestriverrider\LaravelMysqlSpatial\Types\MultiPolygon must be a collection of Wildwestriverrider\LaravelMysqlSpatial\Types\Polygon'
         );
-        $multipolygon = new MultiPolygon([
+        new MultiPolygon([
             $this->getPolygon1(),
             $this->getLineString1(),
         ]);
@@ -136,12 +136,12 @@ class MultiPolygonTest extends BaseTestCase
         $multipolygon[] = 1;
     }
 
-    private function getMultiPolygon()
+    private function getMultiPolygon(): MultiPolygon
     {
         return new MultiPolygon([$this->getPolygon1(), $this->getPolygon2()]);
     }
 
-    private function getLineString1()
+    private function getLineString1(): LineString
     {
         return new LineString([
             new Point(0, 0),
@@ -152,7 +152,7 @@ class MultiPolygonTest extends BaseTestCase
         ]);
     }
 
-    private function getLineString2()
+    private function getLineString2(): LineString
     {
         return new LineString([
             new Point(10, 10),
@@ -163,7 +163,7 @@ class MultiPolygonTest extends BaseTestCase
         ]);
     }
 
-    private function getLineString3()
+    private function getLineString3(): LineString
     {
         return new LineString([
             new Point(100, 100),
@@ -174,17 +174,17 @@ class MultiPolygonTest extends BaseTestCase
         ]);
     }
 
-    private function getPolygon1()
+    private function getPolygon1(): Polygon
     {
         return new Polygon([$this->getLineString1(), $this->getLineString2()]);
     }
 
-    private function getPolygon2()
+    private function getPolygon2(): Polygon
     {
         return new Polygon([$this->getLineString3()]);
     }
 
-    private function getPolygon3()
+    private function getPolygon3(): Polygon
     {
         return new Polygon([
             new LineString([
