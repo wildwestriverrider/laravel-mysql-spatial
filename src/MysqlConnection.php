@@ -44,10 +44,14 @@ class MysqlConnection extends IlluminateMySqlConnection
 
     /**
      * Get the default schema grammar instance.
+     *
+     * @return \Wildwestriverrider\LaravelMysqlSpatial\Schema\Grammars\MySqlGrammar
      */
-    protected function getDefaultSchemaGrammar(): Grammar
+    protected function getDefaultSchemaGrammar()
     {
-        return $this->withTablePrefix(new MySqlGrammar);
+        ($grammar = new MySqlGrammar)->setConnection($this);
+
+        return $this->withTablePrefix($grammar);
     }
 
     /**
