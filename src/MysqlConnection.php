@@ -55,7 +55,10 @@ class MysqlConnection extends IlluminateMySqlConnection
             $grammar->setConnection($this);
         }
 
-        return $this->withTablePrefix($grammar);
+        // Set the table prefix directly instead of using withTablePrefix
+        $grammar->setTablePrefix($this->tablePrefix);
+        
+        return $grammar;
     }
 
     /**
