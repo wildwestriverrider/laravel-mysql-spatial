@@ -9,7 +9,7 @@ use Wildwestriverrider\LaravelMysqlSpatial\MysqlConnection;
 
 class ConnectionFactoryTest extends BaseTestCase
 {
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         Mockery::close();
 
@@ -26,12 +26,12 @@ class ConnectionFactoryTest extends BaseTestCase
      * @throws BindingResolutionException
      * @throws Exception
      */
-    public function testMakeCallsCreateConnection()
+    public function test_make_calls_create_connection()
     {
         $dsn = 'mysql:dbname=spatial_test;host=127.0.0.1;port=3306;';
         $pdo = new \PDO($dsn, 'root', '');
 
-        //$pdo = new PDOStub('127.0.0.1');
+        // $pdo = new PDOStub('127.0.0.1');
 
         $factory = Mockery::mock(ConnectionFactory::class, [new Container])->makePartial();
         $factory->shouldAllowMockingProtectedMethods();
@@ -44,11 +44,11 @@ class ConnectionFactoryTest extends BaseTestCase
      * @throws BindingResolutionException
      * @throws Exception
      */
-    public function testCreateConnectionDifferentDriver()
+    public function test_create_connection_different_driver()
     {
-        $pdo = new PDOStub();
+        $pdo = new PDOStub;
 
-        $factory = Mockery::mock(ConnectionFactory::class, [new Container()])->makePartial();
+        $factory = Mockery::mock(ConnectionFactory::class, [new Container])->makePartial();
         $factory->shouldAllowMockingProtectedMethods();
         $conn = $factory->createConnection('pgsql', $pdo, 'database');
 

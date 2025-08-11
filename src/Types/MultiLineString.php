@@ -30,7 +30,7 @@ class MultiLineString extends GeometryCollection
 
     public function toWKT(): string
     {
-        return sprintf('MULTILINESTRING(%s)', (string)$this);
+        return sprintf('MULTILINESTRING(%s)', (string) $this);
     }
 
     public static function fromString($wktArgument, $srid = 0): static
@@ -46,7 +46,7 @@ class MultiLineString extends GeometryCollection
     public function __toString()
     {
         return implode(',', array_map(function (LineString $lineString) {
-            return sprintf('(%s)', (string)$lineString);
+            return sprintf('(%s)', (string) $lineString);
         }, $this->getLineStrings()));
     }
 
@@ -63,8 +63,8 @@ class MultiLineString extends GeometryCollection
             $geoJson = GeoJson::jsonUnserialize(json_decode($geoJson));
         }
 
-        if (!is_a($geoJson, GeoJsonMultiLineString::class)) {
-            throw new InvalidGeoJsonException('Expected ' . GeoJsonMultiLineString::class . ', got ' . get_class($geoJson));
+        if (! is_a($geoJson, GeoJsonMultiLineString::class)) {
+            throw new InvalidGeoJsonException('Expected '.GeoJsonMultiLineString::class.', got '.get_class($geoJson));
         }
 
         $set = [];
@@ -81,8 +81,6 @@ class MultiLineString extends GeometryCollection
 
     /**
      * Convert to GeoJson Point that is jsonable to GeoJSON.
-     *
-     * @return GeoJsonMultiLineString|GeoJsonPolygon
      */
     public function jsonSerialize(): GeoJsonMultiLineString|GeoJsonPolygon
     {

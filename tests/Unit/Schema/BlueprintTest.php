@@ -14,7 +14,7 @@ class BlueprintTest extends BaseTestCase
      */
     protected $blueprint;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -22,7 +22,7 @@ class BlueprintTest extends BaseTestCase
             ->makePartial()->shouldAllowMockingProtectedMethods();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         Mockery::close();
 
@@ -35,7 +35,7 @@ class BlueprintTest extends BaseTestCase
         parent::tearDown();
     }
 
-    public function testGeometry()
+    public function test_geometry()
     {
         $expectedCol = new ColumnDefinition([
             'type' => 'geometry',
@@ -54,7 +54,7 @@ class BlueprintTest extends BaseTestCase
         $this->assertSame($expectedCol, $result);
     }
 
-    public function testPoint()
+    public function test_point()
     {
         $expectedCol = new ColumnDefinition([
             'type' => 'point',
@@ -73,7 +73,7 @@ class BlueprintTest extends BaseTestCase
         $this->assertSame($expectedCol, $result);
     }
 
-    public function testLinestring()
+    public function test_linestring()
     {
         $expectedCol = new ColumnDefinition([
             'type' => 'linestring',
@@ -92,7 +92,7 @@ class BlueprintTest extends BaseTestCase
         $this->assertSame($expectedCol, $result);
     }
 
-    public function testPolygon()
+    public function test_polygon()
     {
         $expectedCol = new ColumnDefinition([
             'type' => 'polygon',
@@ -111,7 +111,7 @@ class BlueprintTest extends BaseTestCase
         $this->assertSame($expectedCol, $result);
     }
 
-    public function testMultiPoint()
+    public function test_multi_point()
     {
         $expectedCol = new ColumnDefinition([
             'type' => 'multipoint',
@@ -130,7 +130,7 @@ class BlueprintTest extends BaseTestCase
         $this->assertSame($expectedCol, $result);
     }
 
-    public function testMultiLineString()
+    public function test_multi_line_string()
     {
         $expectedCol = new ColumnDefinition([
             'type' => 'multilinestring',
@@ -149,7 +149,7 @@ class BlueprintTest extends BaseTestCase
         $this->assertSame($expectedCol, $result);
     }
 
-    public function testMultiPolygon()
+    public function test_multi_polygon()
     {
         $expectedCol = new ColumnDefinition([
             'type' => 'multipolygon',
@@ -168,7 +168,7 @@ class BlueprintTest extends BaseTestCase
         $this->assertSame($expectedCol, $result);
     }
 
-    public function testGeometryCollection()
+    public function test_geometry_collection()
     {
         $expectedCol = new ColumnDefinition([
             'type' => 'geometrycollection',
@@ -187,7 +187,7 @@ class BlueprintTest extends BaseTestCase
         $this->assertSame($expectedCol, $result);
     }
 
-    public function testGeometryWithSrid()
+    public function test_geometry_with_srid()
     {
         $expectedCol = new ColumnDefinition([
             'type' => 'geometry',
@@ -206,7 +206,7 @@ class BlueprintTest extends BaseTestCase
         $this->assertSame($expectedCol, $result);
     }
 
-    public function testPointWithSrid()
+    public function test_point_with_srid()
     {
         $expectedCol = new ColumnDefinition([
             'type' => 'point',
@@ -225,7 +225,7 @@ class BlueprintTest extends BaseTestCase
         $this->assertSame($expectedCol, $result);
     }
 
-    public function testLinestringWithSrid()
+    public function test_linestring_with_srid()
     {
         $expectedCol = new ColumnDefinition([
             'type' => 'linestring',
@@ -244,7 +244,7 @@ class BlueprintTest extends BaseTestCase
         $this->assertSame($expectedCol, $result);
     }
 
-    public function testPolygonWithSrid()
+    public function test_polygon_with_srid()
     {
         $expectedCol = new ColumnDefinition([
             'type' => 'polygon',
@@ -263,7 +263,7 @@ class BlueprintTest extends BaseTestCase
         $this->assertSame($expectedCol, $result);
     }
 
-    public function testMultiPointWithSrid()
+    public function test_multi_point_with_srid()
     {
         $expectedCol = new ColumnDefinition([
             'type' => 'multipoint',
@@ -282,7 +282,7 @@ class BlueprintTest extends BaseTestCase
         $this->assertSame($expectedCol, $result);
     }
 
-    public function testMultiLineStringWithSrid()
+    public function test_multi_line_string_with_srid()
     {
         $expectedCol = new ColumnDefinition([
             'type' => 'multilinestring',
@@ -301,7 +301,7 @@ class BlueprintTest extends BaseTestCase
         $this->assertSame($expectedCol, $result);
     }
 
-    public function testMultiPolygonWithSrid()
+    public function test_multi_polygon_with_srid()
     {
         $expectedCol = new ColumnDefinition([
             'type' => 'multipolygon',
@@ -320,7 +320,7 @@ class BlueprintTest extends BaseTestCase
         $this->assertSame($expectedCol, $result);
     }
 
-    public function testGeometryCollectionWithSrid()
+    public function test_geometry_collection_with_srid()
     {
         $expectedCol = new ColumnDefinition([
             'type' => 'geometrycollection',

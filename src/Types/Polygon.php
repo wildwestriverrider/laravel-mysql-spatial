@@ -3,7 +3,6 @@
 namespace Wildwestriverrider\LaravelMysqlSpatial\Types;
 
 use GeoJson\GeoJson;
-use GeoJson\Geometry\LinearRing;
 use GeoJson\Geometry\Polygon as GeoJsonPolygon;
 use Wildwestriverrider\LaravelMysqlSpatial\Exceptions\InvalidGeoJsonException;
 

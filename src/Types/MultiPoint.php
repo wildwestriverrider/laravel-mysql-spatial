@@ -66,8 +66,6 @@ class MultiPoint extends PointCollection
 
     /**
      * Convert to GeoJson MultiPoint that is jsonable to GeoJSON.
-     *
-     * @return GeoJsonMultiPoint
      */
     public function jsonSerialize(): GeoJsonMultiPoint
     {

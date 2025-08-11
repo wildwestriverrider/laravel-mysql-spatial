@@ -5,7 +5,7 @@ use Wildwestriverrider\LaravelMysqlSpatial\Types\Point;
 
 class MultiPointTest extends BaseTestCase
 {
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         Mockery::close();
 
@@ -18,7 +18,7 @@ class MultiPointTest extends BaseTestCase
         parent::tearDown();
     }
 
-    public function testFromWKT()
+    public function test_from_wkt()
     {
         $multipoint = MultiPoint::fromWKT('MULTIPOINT((0 0),(1 0),(1 1))');
         $this->assertInstanceOf(MultiPoint::class, $multipoint);
@@ -26,7 +26,7 @@ class MultiPointTest extends BaseTestCase
         $this->assertEquals(3, $multipoint->count());
     }
 
-    public function testToWKT()
+    public function test_to_wkt()
     {
         $collection = [new Point(0, 0), new Point(0, 1), new Point(1, 1)];
 
@@ -35,14 +35,14 @@ class MultiPointTest extends BaseTestCase
         $this->assertEquals('MULTIPOINT((0 0),(1 0),(1 1))', $multipoint->toWKT());
     }
 
-    public function testGetPoints()
+    public function test_get_points()
     {
         $multipoint = MultiPoint::fromWKT('MULTIPOINT((0 0),(1 0),(1 1))');
 
         $this->assertInstanceOf(Point::class, $multipoint->getPoints()[0]);
     }
 
-    public function testFromJson()
+    public function test_from_json()
     {
         $multiPoint = MultiPoint::fromJson('{"type":"MultiPoint","coordinates":[[1,1],[2,1],[2,2]]}');
         $this->assertInstanceOf(MultiPoint::class, $multiPoint);
@@ -53,7 +53,7 @@ class MultiPointTest extends BaseTestCase
         $this->assertEquals(new Point(2, 2), $multiPointPoints[2]);
     }
 
-    public function testInvalidGeoJsonException()
+    public function test_invalid_geo_json_exception()
     {
         $this->assertException(
             \Wildwestriverrider\LaravelMysqlSpatial\Exceptions\InvalidGeoJsonException::class,
@@ -62,7 +62,7 @@ class MultiPointTest extends BaseTestCase
         MultiPoint::fromJson('{"type":"Point","coordinates":[3.4,1.2]}');
     }
 
-    public function testJsonSerialize()
+    public function test_json_serialize()
     {
         $collection = [new Point(0, 0), new Point(0, 1), new Point(1, 1)];
 
@@ -72,7 +72,7 @@ class MultiPointTest extends BaseTestCase
         $this->assertSame('{"type":"MultiPoint","coordinates":[[0,0],[1,0],[1,1]]}', json_encode($multipoint));
     }
 
-    public function testInvalidArgumentExceptionAtLeastOneEntry()
+    public function test_invalid_argument_exception_at_least_one_entry()
     {
         $this->assertException(
             InvalidArgumentException::class,
@@ -81,7 +81,7 @@ class MultiPointTest extends BaseTestCase
         new MultiPoint([]);
     }
 
-    public function testInvalidArgumentExceptionNotArrayOfLineString()
+    public function test_invalid_argument_exception_not_array_of_line_string()
     {
         $this->assertException(
             InvalidArgumentException::class,
@@ -93,7 +93,7 @@ class MultiPointTest extends BaseTestCase
         ]);
     }
 
-    public function testArrayAccess()
+    public function test_array_access()
     {
         $point0 = new Point(0, 0);
         $point1 = new Point(1, 1);
@@ -116,7 +116,7 @@ class MultiPointTest extends BaseTestCase
         $multipoint[] = 1;
     }
 
-    public function testDeprecatedPrependPoint()
+    public function test_deprecated_prepend_point()
     {
         $point1 = new Point(1, 1);
         $point2 = new Point(2, 2);
@@ -130,7 +130,7 @@ class MultiPointTest extends BaseTestCase
         $this->assertEquals($point2, $multipoint[2]);
     }
 
-    public function testDeprecatedAppendPoint()
+    public function test_deprecated_append_point()
     {
         $point0 = new Point(0, 0);
         $point1 = new Point(1, 1);
@@ -144,7 +144,7 @@ class MultiPointTest extends BaseTestCase
         $this->assertEquals($point2, $multipoint[2]);
     }
 
-    public function testDeprecatedInsertPoint()
+    public function test_deprecated_insert_point()
     {
         $point1 = new Point(1, 1);
         $point3 = new Point(3, 3);

@@ -23,7 +23,7 @@ class PolygonTest extends BaseTestCase
         $this->polygon = new Polygon([$collection], 4326);
     }
 
-    public function testFromWKT()
+    public function test_from_wkt()
     {
         $polygon = Polygon::fromWKT('POLYGON((0 0,4 0,4 4,0 4,0 0),(1 1, 2 1, 2 2, 1 2,1 1))', 4326);
         $this->assertInstanceOf(Polygon::class, $polygon);
@@ -31,12 +31,12 @@ class PolygonTest extends BaseTestCase
         $this->assertEquals(2, $polygon->count());
     }
 
-    public function testToWKT()
+    public function test_to_wkt()
     {
         $this->assertEquals('POLYGON((0 0,1 0,1 1,0 1,0 0))', $this->polygon->toWKT());
     }
 
-    public function testFromJson()
+    public function test_from_json()
     {
         $polygon = Polygon::fromJson('{"type":"Polygon","coordinates":[[[1,1],[2,1],[2,2],[1,2],[1,1]],[[1.2,1.2],[1.6,1.2],[1.6,1.8],[1.2,1.8],[1.2,1.2]]]}');
         $this->assertInstanceOf(Polygon::class, $polygon);
@@ -54,7 +54,7 @@ class PolygonTest extends BaseTestCase
         $this->assertEquals(new Point(1.2, 1.2), $polygonLineStrings[1][4]);
     }
 
-    public function testInvalidGeoJsonException()
+    public function test_invalid_geo_json_exception()
     {
         $this->assertException(
             \Wildwestriverrider\LaravelMysqlSpatial\Exceptions\InvalidGeoJsonException::class,
@@ -63,7 +63,7 @@ class PolygonTest extends BaseTestCase
         Polygon::fromJson('{"type":"Point","coordinates":[3.4,1.2]}');
     }
 
-    public function testJsonSerialize()
+    public function test_json_serialize()
     {
         $this->assertInstanceOf(\GeoJson\Geometry\Polygon::class, $this->polygon->jsonSerialize());
         $this->assertSame(

@@ -12,7 +12,7 @@ use Wildwestriverrider\LaravelMysqlSpatial\Types\Polygon;
 
 class GeometryTest extends BaseTestCase
 {
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         Mockery::close();
 
@@ -25,7 +25,7 @@ class GeometryTest extends BaseTestCase
         parent::tearDown();
     }
 
-    public function testGetWKTArgument()
+    public function test_get_wkt_argument()
     {
         $this->assertEquals('0 0', Geometry::getWKTArgument('POINT(0 0)'));
         $this->assertEquals('0 0,1 1,1 2', Geometry::getWKTArgument('LINESTRING(0 0,1 1,1 2)'));
@@ -36,7 +36,7 @@ class GeometryTest extends BaseTestCase
         $this->assertEquals('POINT(2 3),LINESTRING(2 3,3 4)', Geometry::getWKTArgument('GEOMETRYCOLLECTION(POINT(2 3),LINESTRING(2 3,3 4))'));
     }
 
-    public function testGetWKTClass()
+    public function test_get_wkt_class()
     {
         $this->assertEquals(Point::class, Geometry::getWKTClass('POINT(0 0)'));
         $this->assertEquals(LineString::class, Geometry::getWKTClass('LINESTRING(0 0,1 1,1 2)'));
@@ -52,7 +52,7 @@ class GeometryTest extends BaseTestCase
         Geometry::getWKTClass('TRIANGLE((0 0, 0 9, 9 0, 0 0))');
     }
 
-    public function testGetWKBClass()
+    public function test_get_wkb_class()
     {
         $prefix = "\0\0\0\0";
 
@@ -70,7 +70,7 @@ class GeometryTest extends BaseTestCase
         $this->assertInstanceOf(Point::class, Geometry::fromWKB($prefix.'0101000000000000000000f03f0000000000000040'));
     }
 
-    public function testFromJsonPoint()
+    public function test_from_json_point()
     {
         $point = Geometry::fromJson('{"type":"Point","coordinates":[3.4,1.2]}');
         $this->assertInstanceOf(Point::class, $point);
@@ -78,7 +78,7 @@ class GeometryTest extends BaseTestCase
         $this->assertEquals(3.4, $point->getLng());
     }
 
-    public function testFromJsonLineString()
+    public function test_from_json_line_string()
     {
         $lineString = Geometry::fromJson('{"type": "LineString","coordinates":[[1,1],[2,2]]}');
         $this->assertInstanceOf(LineString::class, $lineString);
@@ -87,7 +87,7 @@ class GeometryTest extends BaseTestCase
         $this->assertEquals(new Point(2, 2), $lineStringPoints[1]);
     }
 
-    public function testFromJsonPolygon()
+    public function test_from_json_polygon()
     {
         $polygon1 = Geometry::fromJson('{"type": "Polygon","coordinates":[[[1,1],[2,1],[2,2],[1,2],[1,1]]]}');
         $this->assertInstanceOf(Polygon::class, $polygon1);
@@ -115,7 +115,7 @@ class GeometryTest extends BaseTestCase
         $this->assertEquals(new Point(1.2, 1.2), $polygonLineStrings2[1][4]);
     }
 
-    public function testFromJsonMultiPoint()
+    public function test_from_json_multi_point()
     {
         $multiPoint = Geometry::fromJson('{"type":"MultiPoint","coordinates":[[1,1],[2,1],[2,2]]}');
         $this->assertInstanceOf(MultiPoint::class, $multiPoint);
@@ -126,7 +126,7 @@ class GeometryTest extends BaseTestCase
         $this->assertEquals(new Point(2, 2), $multiPointPoints[2]);
     }
 
-    public function testFromJsonMultiLineString()
+    public function test_from_json_multi_line_string()
     {
         $multiLineString = Geometry::fromJson('{"type":"MultiLineString","coordinates":[[[1,1],[1,2],[1,3]],[[2,1],[2,2],[2,3]]]}');
         $this->assertInstanceOf(MultiLineString::class, $multiLineString);
@@ -140,7 +140,7 @@ class GeometryTest extends BaseTestCase
         $this->assertEquals(new Point(3, 2), $multiLineStringLineStrings[1][2]);
     }
 
-    public function testFromJsonMultiPolygon()
+    public function test_from_json_multi_polygon()
     {
         $multiPolygon = Geometry::fromJson('{"type":"MultiPolygon","coordinates":[[[[1,1],[1,2],[2,2],[2,1],[1,1]]],[[[0,0],[0,1],[1,1],[1,0],[0,0]]]]}');
         $this->assertInstanceOf(MultiPolygon::class, $multiPolygon);
@@ -162,7 +162,7 @@ class GeometryTest extends BaseTestCase
         ])]), $multiPolygonPolygons[1]);
     }
 
-    public function testFromJsonPointFeature()
+    public function test_from_json_point_feature()
     {
         $point = Geometry::fromJson('{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[3.4,1.2]}}');
         $this->assertInstanceOf(Point::class, $point);
@@ -170,7 +170,7 @@ class GeometryTest extends BaseTestCase
         $this->assertEquals(3.4, $point->getLng());
     }
 
-    public function testFromJsonMultiPointFeatureCollection()
+    public function test_from_json_multi_point_feature_collection()
     {
         $geometryCollection = Geometry::fromJson('{"type":"FeatureCollection","features":[{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[1,2]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[3,4]}}]}');
         $this->assertInstanceOf(GeometryCollection::class, $geometryCollection);
@@ -180,7 +180,7 @@ class GeometryTest extends BaseTestCase
         $this->assertEquals(new Point(4, 3), $geometryCollectionPoints[1]);
     }
 
-    public function testToJson()
+    public function test_to_json()
     {
         $point = new Point(1, 1);
 

@@ -15,18 +15,18 @@ class SpatialTraitTest extends BaseTestCase
 
     protected array $queries;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->model = new TestModel;
         $this->queries = &$this->model->getConnection()->getPdo()->queries;
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->model->getConnection()->getPdo()->resetQueries();
     }
 
-    public function testInsertUpdatePointHasCorrectSql()
+    public function test_insert_update_point_has_correct_sql()
     {
         $this->assertFalse($this->model->exists);
 
@@ -46,7 +46,7 @@ class SpatialTraitTest extends BaseTestCase
         // TODO: assert bindings in query
     }
 
-    public function testInsertUpdateLineStringHasCorrectSql()
+    public function test_insert_update_line_string_has_correct_sql()
     {
         $point1 = new Point(1, 2);
         $point2 = new Point(2, 3);
@@ -69,7 +69,7 @@ class SpatialTraitTest extends BaseTestCase
         // TODO: assert bindings in query
     }
 
-    public function testInsertUpdatePolygonHasCorrectSql()
+    public function test_insert_update_polygon_has_correct_sql()
     {
         $point1 = new Point(1, 2);
         $point2 = new Point(2, 3);
@@ -95,7 +95,7 @@ class SpatialTraitTest extends BaseTestCase
         // TODO: assert bindings in query
     }
 
-    public function testInsertUpdateMultiPointHasCorrectSql()
+    public function test_insert_update_multi_point_has_correct_sql()
     {
         $point1 = new Point(1, 2);
         $point2 = new Point(2, 3);
@@ -118,7 +118,7 @@ class SpatialTraitTest extends BaseTestCase
         // TODO: assert bindings in query
     }
 
-    public function testInsertUpdateMultiLineStringHasCorrectSql()
+    public function test_insert_update_multi_line_string_has_correct_sql()
     {
         $point1 = new Point(1, 2);
         $point2 = new Point(2, 3);
@@ -144,7 +144,7 @@ class SpatialTraitTest extends BaseTestCase
         // TODO: assert bindings in query
     }
 
-    public function testInsertUpdateMultiPolygonHasCorrectSql()
+    public function test_insert_update_multi_polygon_has_correct_sql()
     {
         $point1 = new Point(1, 2);
         $point2 = new Point(2, 3);
@@ -179,7 +179,7 @@ class SpatialTraitTest extends BaseTestCase
         // TODO: assert bindings in query
     }
 
-    public function testInsertUpdateGeometryCollectionHasCorrectSql()
+    public function test_insert_update_geometry_collection_has_correct_sql()
     {
         $point1 = new Point(1, 2);
         $point2 = new Point(2, 3);
@@ -203,7 +203,7 @@ class SpatialTraitTest extends BaseTestCase
         // TODO: assert bindings in query
     }
 
-    public function testSettingRawAttributes()
+    public function test_setting_raw_attributes()
     {
         $attributes['point'] = "\0\0\0\0".'0101000000000000000000f03f0000000000000040';
 
@@ -211,7 +211,7 @@ class SpatialTraitTest extends BaseTestCase
         $this->assertInstanceOf(Point::class, ($this->model->point));
     }
 
-    public function testSpatialFieldsNotDefinedException()
+    public function test_spatial_fields_not_defined_exception()
     {
         $model = new TestNoSpatialModel;
         $this->assertException(
@@ -222,7 +222,7 @@ class SpatialTraitTest extends BaseTestCase
         $model->getSpatialFields();
     }
 
-    public function testScopeDistance()
+    public function test_scope_distance()
     {
         $point = new Point(1, 2);
         $query = TestModel::distance('point', $point, 10);
@@ -237,7 +237,7 @@ class SpatialTraitTest extends BaseTestCase
         $this->assertEquals(10, $bindings[2]);
     }
 
-    public function testScopeDistanceExcludingSelf()
+    public function test_scope_distance_excluding_self()
     {
         $point = new Point(1, 2);
         $query = TestModel::distanceExcludingSelf('point', $point, 10);
@@ -254,7 +254,7 @@ class SpatialTraitTest extends BaseTestCase
         $this->assertEquals('POINT(2 1)', $bindings[3]);
     }
 
-    public function testScopeDistanceSphere()
+    public function test_scope_distance_sphere()
     {
         $point = new Point(1, 2);
         $query = TestModel::distanceSphere('point', $point, 10);
@@ -269,7 +269,7 @@ class SpatialTraitTest extends BaseTestCase
         $this->assertEquals(10, $bindings[2]);
     }
 
-    public function testScopeDistanceSphereExcludingSelf()
+    public function test_scope_distance_sphere_excluding_self()
     {
         $point = new Point(1, 2);
         $query = TestModel::distanceSphereExcludingSelf('point', $point, 10);
@@ -286,7 +286,7 @@ class SpatialTraitTest extends BaseTestCase
         $this->assertEquals('POINT(2 1)', $bindings[3]);
     }
 
-    public function testScopeDistanceValue()
+    public function test_scope_distance_value()
     {
         $point = new Point(1, 2);
         $query = TestModel::distanceValue('point', $point);
@@ -302,7 +302,7 @@ class SpatialTraitTest extends BaseTestCase
         $this->assertEquals('POINT(2 1)', $bindings[0]);
     }
 
-    public function testScopeDistanceValueWithSelect()
+    public function test_scope_distance_value_with_select()
     {
         $point = new Point(1, 2);
         $query = TestModel::select('some_column')->distanceValue('point', $point);
@@ -318,7 +318,7 @@ class SpatialTraitTest extends BaseTestCase
         $this->assertEquals('POINT(2 1)', $bindings[0]);
     }
 
-    public function testScopeDistanceSphereValue()
+    public function test_scope_distance_sphere_value()
     {
         $point = new Point(1, 2);
         $query = TestModel::distanceSphereValue('point', $point);
@@ -334,7 +334,7 @@ class SpatialTraitTest extends BaseTestCase
         $this->assertEquals('POINT(2 1)', $bindings[0]);
     }
 
-    public function testScopeDistanceSphereValueWithSelect()
+    public function test_scope_distance_sphere_value_with_select()
     {
         $point = new Point(1, 2);
         $query = TestModel::select('some_column')->distanceSphereValue('point', $point);
@@ -365,7 +365,7 @@ class SpatialTraitTest extends BaseTestCase
         return new \Wildwestriverrider\LaravelMysqlSpatial\Types\Polygon([$linestring1, $linestring2, $linestring3]);
     }
 
-    public function testScopeComparison()
+    public function test_scope_comparison()
     {
         $query = TestModel::comparison('point', $this->buildTestPolygon(), 'within');
 
@@ -378,7 +378,7 @@ class SpatialTraitTest extends BaseTestCase
         $this->assertEquals('POLYGON((1 1,2 1),(2 1,2 2),(2 2,1 1))', $bindings[0]);
     }
 
-    public function testScopeWithin()
+    public function test_scope_within()
     {
         $query = TestModel::within('point', $this->buildTestPolygon());
 
@@ -391,7 +391,7 @@ class SpatialTraitTest extends BaseTestCase
         $this->assertEquals('POLYGON((1 1,2 1),(2 1,2 2),(2 2,1 1))', $bindings[0]);
     }
 
-    public function testScopeCrosses()
+    public function test_scope_crosses()
     {
         $query = TestModel::crosses('point', $this->buildTestPolygon());
 
@@ -404,7 +404,7 @@ class SpatialTraitTest extends BaseTestCase
         $this->assertEquals('POLYGON((1 1,2 1),(2 1,2 2),(2 2,1 1))', $bindings[0]);
     }
 
-    public function testScopeContains()
+    public function test_scope_contains()
     {
         $query = TestModel::contains('point', $this->buildTestPolygon());
 
@@ -417,7 +417,7 @@ class SpatialTraitTest extends BaseTestCase
         $this->assertEquals('POLYGON((1 1,2 1),(2 1,2 2),(2 2,1 1))', $bindings[0]);
     }
 
-    public function testScopeDisjoint()
+    public function test_scope_disjoint()
     {
         $query = TestModel::disjoint('point', $this->buildTestPolygon());
 
@@ -430,7 +430,7 @@ class SpatialTraitTest extends BaseTestCase
         $this->assertEquals('POLYGON((1 1,2 1),(2 1,2 2),(2 2,1 1))', $bindings[0]);
     }
 
-    public function testScopeEquals()
+    public function test_scope_equals()
     {
         $query = TestModel::equals('point', $this->buildTestPolygon());
 
@@ -443,7 +443,7 @@ class SpatialTraitTest extends BaseTestCase
         $this->assertEquals('POLYGON((1 1,2 1),(2 1,2 2),(2 2,1 1))', $bindings[0]);
     }
 
-    public function testScopeIntersects()
+    public function test_scope_intersects()
     {
         $query = TestModel::intersects('point', $this->buildTestPolygon());
 
@@ -456,7 +456,7 @@ class SpatialTraitTest extends BaseTestCase
         $this->assertEquals('POLYGON((1 1,2 1),(2 1,2 2),(2 2,1 1))', $bindings[0]);
     }
 
-    public function testScopeOverlaps()
+    public function test_scope_overlaps()
     {
         $query = TestModel::overlaps('point', $this->buildTestPolygon());
 
@@ -469,7 +469,7 @@ class SpatialTraitTest extends BaseTestCase
         $this->assertEquals('POLYGON((1 1,2 1),(2 1,2 2),(2 2,1 1))', $bindings[0]);
     }
 
-    public function testScopeDoesTouch()
+    public function test_scope_does_touch()
     {
         $query = TestModel::doesTouch('point', $this->buildTestPolygon());
 
@@ -482,7 +482,7 @@ class SpatialTraitTest extends BaseTestCase
         $this->assertEquals('POLYGON((1 1,2 1),(2 1,2 2),(2 2,1 1))', $bindings[0]);
     }
 
-    public function testScopeOrderBySpatialThrowsExceptionWhenFunctionNotRegistered()
+    public function test_scope_order_by_spatial_throws_exception_when_function_not_registered()
     {
         $point = new Point(1, 2);
         $this->assertException(
@@ -492,7 +492,7 @@ class SpatialTraitTest extends BaseTestCase
         TestModel::orderBySpatial('point', $point, 'does-not-exist');
     }
 
-    public function testScopeOrderByDistance()
+    public function test_scope_order_by_distance()
     {
         $point = new Point(1, 2);
         $query = TestModel::orderByDistance('point', $point);
@@ -506,7 +506,7 @@ class SpatialTraitTest extends BaseTestCase
         $this->assertEquals('POINT(2 1)', $bindings[0]);
     }
 
-    public function testScopeOrderByDistanceSphere()
+    public function test_scope_order_by_distance_sphere()
     {
         $point = new Point(1, 2);
         $query = TestModel::orderByDistanceSphere('point', $point);
@@ -536,7 +536,7 @@ class TestModel extends Model
         if (is_null(static::$pdo)) {
             static::$pdo = m::mock('TestPDO')->makePartial();
             static::$pdo->__construct();
-            //static::$pdo = m::mock('TestPDO');
+            // static::$pdo = m::mock('TestPDO');
         }
 
         return new MysqlConnection(static::$pdo);

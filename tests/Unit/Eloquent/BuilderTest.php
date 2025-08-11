@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Query\Grammars\MySqlGrammar;
@@ -33,7 +32,7 @@ class BuilderTest extends BaseTestCase
         $this->builder->setModel(new TestBuilderModel);
     }
 
-    public function testUpdatePoint()
+    public function test_update_point()
     {
         $point = new Point(1, 2);
         $this->queryBuilder
@@ -47,7 +46,7 @@ class BuilderTest extends BaseTestCase
         $this->assertSame(1, $result);
     }
 
-    public function testUpdateLinestring()
+    public function test_update_linestring()
     {
         $linestring = new LineString([new Point(0, 0), new Point(1, 1), new Point(2, 2)]);
 
@@ -62,7 +61,7 @@ class BuilderTest extends BaseTestCase
         $this->assertSame(1, $result);
     }
 
-    public function testUpdatePolygon()
+    public function test_update_polygon()
     {
         $linestrings[] = new LineString([new Point(0, 0), new Point(0, 1)]);
         $linestrings[] = new LineString([new Point(0, 1), new Point(1, 1)]);
@@ -80,7 +79,7 @@ class BuilderTest extends BaseTestCase
         $this->assertSame(1, $result);
     }
 
-    public function testUpdatePointWithSrid()
+    public function test_update_point_with_srid()
     {
         $point = new Point(1, 2, 4326);
         $this->queryBuilder
@@ -94,7 +93,7 @@ class BuilderTest extends BaseTestCase
         $this->assertSame(1, $result);
     }
 
-    public function testUpdateLinestringWithSrid()
+    public function test_update_linestring_with_srid()
     {
         $linestring = new LineString([new Point(0, 0), new Point(1, 1), new Point(2, 2)], 4326);
 
@@ -109,7 +108,7 @@ class BuilderTest extends BaseTestCase
         $this->assertSame(1, $result);
     }
 
-    public function testUpdatePolygonWithSrid()
+    public function test_update_polygon_with_srid()
     {
         $linestrings[] = new LineString([new Point(0, 0), new Point(0, 1)]);
         $linestrings[] = new LineString([new Point(0, 1), new Point(1, 1)]);

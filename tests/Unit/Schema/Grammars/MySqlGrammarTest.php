@@ -7,7 +7,7 @@ use Wildwestriverrider\LaravelMysqlSpatial\Schema\Grammars\MySqlGrammar;
 
 class MySqlGrammarTest extends BaseTestCase
 {
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         Mockery::close();
 
@@ -20,7 +20,7 @@ class MySqlGrammarTest extends BaseTestCase
         parent::tearDown();
     }
 
-    public function testAddingGeometry()
+    public function test_adding_geometry()
     {
         $blueprint = new Blueprint('test');
         $blueprint->geometry('foo');
@@ -30,7 +30,7 @@ class MySqlGrammarTest extends BaseTestCase
         $this->assertEquals('alter table `test` add `foo` GEOMETRY not null', $statements[0]);
     }
 
-    public function testAddingPoint()
+    public function test_adding_point()
     {
         $blueprint = new Blueprint('test');
         $blueprint->point('foo');
@@ -40,7 +40,7 @@ class MySqlGrammarTest extends BaseTestCase
         $this->assertEquals('alter table `test` add `foo` POINT not null', $statements[0]);
     }
 
-    public function testAddingLinestring()
+    public function test_adding_linestring()
     {
         $blueprint = new Blueprint('test');
         $blueprint->linestring('foo');
@@ -50,7 +50,7 @@ class MySqlGrammarTest extends BaseTestCase
         $this->assertEquals('alter table `test` add `foo` LINESTRING not null', $statements[0]);
     }
 
-    public function testAddingPolygon()
+    public function test_adding_polygon()
     {
         $blueprint = new Blueprint('test');
         $blueprint->polygon('foo');
@@ -60,7 +60,7 @@ class MySqlGrammarTest extends BaseTestCase
         $this->assertEquals('alter table `test` add `foo` POLYGON not null', $statements[0]);
     }
 
-    public function testAddingMultipoint()
+    public function test_adding_multipoint()
     {
         $blueprint = new Blueprint('test');
         $blueprint->multipoint('foo');
@@ -70,7 +70,7 @@ class MySqlGrammarTest extends BaseTestCase
         $this->assertEquals('alter table `test` add `foo` MULTIPOINT not null', $statements[0]);
     }
 
-    public function testAddingMultiLinestring()
+    public function test_adding_multi_linestring()
     {
         $blueprint = new Blueprint('test');
         $blueprint->multilinestring('foo');
@@ -80,7 +80,7 @@ class MySqlGrammarTest extends BaseTestCase
         $this->assertEquals('alter table `test` add `foo` MULTILINESTRING not null', $statements[0]);
     }
 
-    public function testAddingMultiPolygon()
+    public function test_adding_multi_polygon()
     {
         $blueprint = new Blueprint('test');
         $blueprint->multipolygon('foo');
@@ -90,7 +90,7 @@ class MySqlGrammarTest extends BaseTestCase
         $this->assertEquals('alter table `test` add `foo` MULTIPOLYGON not null', $statements[0]);
     }
 
-    public function testAddingGeometryCollection()
+    public function test_adding_geometry_collection()
     {
         $blueprint = new Blueprint('test');
         $blueprint->geometrycollection('foo');
@@ -100,7 +100,7 @@ class MySqlGrammarTest extends BaseTestCase
         $this->assertEquals('alter table `test` add `foo` GEOMETRYCOLLECTION not null', $statements[0]);
     }
 
-    public function testAddingGeometryWithSrid()
+    public function test_adding_geometry_with_srid()
     {
         $blueprint = new Blueprint('test');
         $blueprint->geometry('foo', null, 4326);
@@ -110,7 +110,7 @@ class MySqlGrammarTest extends BaseTestCase
         $this->assertEquals('alter table `test` add `foo` GEOMETRY not null srid 4326', $statements[0]);
     }
 
-    public function testAddingPointWithSrid()
+    public function test_adding_point_with_srid()
     {
         $blueprint = new Blueprint('test');
         $blueprint->point('foo', 4326);
@@ -120,7 +120,7 @@ class MySqlGrammarTest extends BaseTestCase
         $this->assertEquals('alter table `test` add `foo` POINT not null srid 4326', $statements[0]);
     }
 
-    public function testAddingLinestringWithSrid()
+    public function test_adding_linestring_with_srid()
     {
         $blueprint = new Blueprint('test');
         $blueprint->linestring('foo', 4326);
@@ -130,7 +130,7 @@ class MySqlGrammarTest extends BaseTestCase
         $this->assertEquals('alter table `test` add `foo` LINESTRING not null srid 4326', $statements[0]);
     }
 
-    public function testAddingPolygonWithSrid()
+    public function test_adding_polygon_with_srid()
     {
         $blueprint = new Blueprint('test');
         $blueprint->polygon('foo', 4326);
@@ -140,7 +140,7 @@ class MySqlGrammarTest extends BaseTestCase
         $this->assertEquals('alter table `test` add `foo` POLYGON not null srid 4326', $statements[0]);
     }
 
-    public function testAddingMultipointWithSrid()
+    public function test_adding_multipoint_with_srid()
     {
         $blueprint = new Blueprint('test');
         $blueprint->multipoint('foo', 4326);
@@ -150,7 +150,7 @@ class MySqlGrammarTest extends BaseTestCase
         $this->assertEquals('alter table `test` add `foo` MULTIPOINT not null srid 4326', $statements[0]);
     }
 
-    public function testAddingMultiLinestringWithSrid()
+    public function test_adding_multi_linestring_with_srid()
     {
         $blueprint = new Blueprint('test');
         $blueprint->multilinestring('foo', 4326);
@@ -160,7 +160,7 @@ class MySqlGrammarTest extends BaseTestCase
         $this->assertEquals('alter table `test` add `foo` MULTILINESTRING not null srid 4326', $statements[0]);
     }
 
-    public function testAddingMultiPolygonWithSrid()
+    public function test_adding_multi_polygon_with_srid()
     {
         $blueprint = new Blueprint('test');
         $blueprint->multipolygon('foo', 4326);
@@ -170,7 +170,7 @@ class MySqlGrammarTest extends BaseTestCase
         $this->assertEquals('alter table `test` add `foo` MULTIPOLYGON not null srid 4326', $statements[0]);
     }
 
-    public function testAddingGeometryCollectionWithSrid()
+    public function test_adding_geometry_collection_with_srid()
     {
         $blueprint = new Blueprint('test');
         $blueprint->geometrycollection('foo', 4326);
@@ -183,7 +183,7 @@ class MySqlGrammarTest extends BaseTestCase
     /**
      * @throws Exception
      */
-    public function testAddRemoveSpatialIndex()
+    public function test_add_remove_spatial_index()
     {
         $dsn = 'mysql:dbname=spatial_test;host=127.0.0.1;port=3306;';
         $pdo = new PDO($dsn, 'root', '');
@@ -207,13 +207,13 @@ class MySqlGrammarTest extends BaseTestCase
         $this->assertEquals($expectedSql, $dropStatements[3]);
     }
 
-//    /**
-//     * @return Connection
-//     */
-//    protected function getConnection(): Connection
-//    {
-//        return Mockery::mock(MysqlConnection::class);
-//    }
+    //    /**
+    //     * @return Connection
+    //     */
+    //    protected function getConnection(): Connection
+    //    {
+    //        return Mockery::mock(MysqlConnection::class);
+    //    }
 
     protected function getGrammar(): MySqlGrammar
     {

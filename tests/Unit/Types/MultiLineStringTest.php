@@ -6,7 +6,7 @@ use Wildwestriverrider\LaravelMysqlSpatial\Types\Point;
 
 class MultiLineStringTest extends BaseTestCase
 {
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         Mockery::close();
 
@@ -19,7 +19,7 @@ class MultiLineStringTest extends BaseTestCase
         parent::tearDown();
     }
 
-    public function testFromWKT()
+    public function test_from_wkt()
     {
         $multilinestring = MultiLineString::fromWKT('MULTILINESTRING((0 0,1 1,1 2),(2 3,3 2,5 4))');
         $this->assertInstanceOf(MultiLineString::class, $multilinestring);
@@ -27,7 +27,7 @@ class MultiLineStringTest extends BaseTestCase
         $this->assertSame(2, $multilinestring->count());
     }
 
-    public function testToWKT()
+    public function test_to_wkt()
     {
         $collection = new LineString([
             new Point(0, 0),
@@ -42,7 +42,7 @@ class MultiLineStringTest extends BaseTestCase
         $this->assertSame('MULTILINESTRING((0 0,1 0,1 1,0 1,0 0))', $multilinestring->toWKT());
     }
 
-    public function testFromJson()
+    public function test_from_json()
     {
         $multiLineString = MultiLineString::fromJson('{"type":"MultiLineString","coordinates":[[[1,1],[1,2],[1,3]],[[2,1],[2,2],[2,3]]]}');
         $this->assertInstanceOf(MultiLineString::class, $multiLineString);
@@ -56,7 +56,7 @@ class MultiLineStringTest extends BaseTestCase
         $this->assertEquals(new Point(3, 2), $multiLineStringLineStrings[1][2]);
     }
 
-    public function testInvalidGeoJsonException()
+    public function test_invalid_geo_json_exception()
     {
         $this->assertException(
             \Wildwestriverrider\LaravelMysqlSpatial\Exceptions\InvalidGeoJsonException::class,
@@ -65,7 +65,7 @@ class MultiLineStringTest extends BaseTestCase
         MultiLineString::fromJson('{"type":"Point","coordinates":[3.4,1.2]}');
     }
 
-    public function testJsonSerialize()
+    public function test_json_serialize()
     {
         $multilinestring = MultiLineString::fromWKT('MULTILINESTRING((0 0,1 1,1 2),(2 3,3 2,5 4))');
 
@@ -73,7 +73,7 @@ class MultiLineStringTest extends BaseTestCase
         $this->assertSame('{"type":"MultiLineString","coordinates":[[[0,0],[1,1],[1,2]],[[2,3],[3,2],[5,4]]]}', json_encode($multilinestring));
     }
 
-    public function testInvalidArgumentExceptionAtLeastOneEntry()
+    public function test_invalid_argument_exception_at_least_one_entry()
     {
         $this->assertException(
             InvalidArgumentException::class,
@@ -82,7 +82,7 @@ class MultiLineStringTest extends BaseTestCase
         new MultiLineString([]);
     }
 
-    public function testInvalidArgumentExceptionNotArrayOfLineString()
+    public function test_invalid_argument_exception_not_array_of_line_string()
     {
         $this->assertException(
             InvalidArgumentException::class,
@@ -94,7 +94,7 @@ class MultiLineStringTest extends BaseTestCase
         ]);
     }
 
-    public function testArrayAccess()
+    public function test_array_access()
     {
         $linestring0 = new LineString([
             new Point(0, 0),

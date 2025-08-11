@@ -9,7 +9,7 @@ class MysqlConnectionTest extends TestCase
 {
     private MysqlConnection $mysqlConnection;
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         Mockery::close();
     }
@@ -25,7 +25,7 @@ class MysqlConnectionTest extends TestCase
         $this->mysqlConnection = new MysqlConnection($pdo, 'database', 'prefix', $mysqlConfig);
     }
 
-    public function testGetSchemaBuilder()
+    public function test_get_schema_builder()
     {
         $builder = $this->mysqlConnection->getSchemaBuilder();
         $this->assertInstanceOf(Builder::class, $builder);

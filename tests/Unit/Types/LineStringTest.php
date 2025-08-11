@@ -12,14 +12,14 @@ class LineStringTest extends BaseTestCase
         $this->points = [new Point(0, 0), new Point(1, 1), new Point(2, 2)];
     }
 
-    public function testToWKT()
+    public function test_to_wkt()
     {
         $linestring = new LineString($this->points);
 
         $this->assertEquals('LINESTRING(0 0,1 1,2 2)', $linestring->toWKT());
     }
 
-    public function testFromWKT()
+    public function test_from_wkt()
     {
         $linestring = LineString::fromWKT('LINESTRING(0 0, 1 1, 2 2)');
         $this->assertInstanceOf(LineString::class, $linestring);
@@ -27,14 +27,14 @@ class LineStringTest extends BaseTestCase
         $this->assertEquals(3, $linestring->count());
     }
 
-    public function testToString()
+    public function test_to_string()
     {
         $linestring = new LineString($this->points);
 
         $this->assertEquals('0 0,1 1,2 2', (string) $linestring);
     }
 
-    public function testFromJson()
+    public function test_from_json()
     {
         $lineString = LineString::fromJson('{"type": "LineString","coordinates":[[1,1],[2,2]]}');
         $this->assertInstanceOf(LineString::class, $lineString);
@@ -43,7 +43,7 @@ class LineStringTest extends BaseTestCase
         $this->assertEquals(new Point(2, 2), $lineStringPoints[1]);
     }
 
-    public function testInvalidGeoJsonException()
+    public function test_invalid_geo_json_exception()
     {
         $this->assertException(
             \Wildwestriverrider\LaravelMysqlSpatial\Exceptions\InvalidGeoJsonException::class,
@@ -52,7 +52,7 @@ class LineStringTest extends BaseTestCase
         LineString::fromJson('{"type":"Point","coordinates":[3.4,1.2]}');
     }
 
-    public function testJsonSerialize()
+    public function test_json_serialize()
     {
         $lineString = new LineString($this->points);
 

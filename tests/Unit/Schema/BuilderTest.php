@@ -10,7 +10,7 @@ use Wildwestriverrider\LaravelMysqlSpatial\Schema\Builder;
 
 class BuilderTest extends BaseTestCase
 {
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         Mockery::close();
 
@@ -23,7 +23,7 @@ class BuilderTest extends BaseTestCase
         parent::tearDown();
     }
 
-    public function testReturnsCorrectBlueprint()
+    public function test_returns_correct_blueprint()
     {
         $connection = Mockery::mock(MysqlConnection::class);
         $connection->shouldReceive('getSchemaGrammar')->once()->andReturn(null);

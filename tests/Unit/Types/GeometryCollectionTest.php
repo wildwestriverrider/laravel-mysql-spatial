@@ -8,7 +8,7 @@ use Wildwestriverrider\LaravelMysqlSpatial\Types\Polygon;
 
 class GeometryCollectionTest extends BaseTestCase
 {
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         Mockery::close();
 
@@ -21,7 +21,7 @@ class GeometryCollectionTest extends BaseTestCase
         parent::tearDown();
     }
 
-    public function testFromWKT()
+    public function test_from_wkt()
     {
         /**
          * @var GeometryCollection
@@ -34,25 +34,25 @@ class GeometryCollectionTest extends BaseTestCase
         $this->assertInstanceOf(LineString::class, $geometryCollection->getGeometries()[1]);
     }
 
-    public function testToWKT()
+    public function test_to_wkt()
     {
         $this->assertEquals('GEOMETRYCOLLECTION(LINESTRING(0 0,1 0,1 1,0 1,0 0),POINT(200 100))', $this->getGeometryCollection()->toWKT());
     }
 
-    public function testJsonSerialize()
+    public function test_json_serialize()
     {
         $this->assertInstanceOf(\GeoJson\Geometry\GeometryCollection::class, $this->getGeometryCollection()->jsonSerialize());
 
         $this->assertSame('{"type":"GeometryCollection","geometries":[{"type":"LineString","coordinates":[[0,0],[1,0],[1,1],[0,1],[0,0]]},{"type":"Point","coordinates":[200,100]}]}', json_encode($this->getGeometryCollection()->jsonSerialize()));
     }
 
-    public function testCanCreateEmptyGeometryCollection()
+    public function test_can_create_empty_geometry_collection()
     {
         $geometryCollection = new GeometryCollection([]);
         $this->assertInstanceOf(GeometryCollection::class, $geometryCollection);
     }
 
-    public function testFromWKTWithEmptyGeometryCollection()
+    public function test_from_wkt_with_empty_geometry_collection()
     {
         /**
          * @var GeometryCollection
@@ -63,12 +63,12 @@ class GeometryCollectionTest extends BaseTestCase
         $this->assertEquals(0, $geometryCollection->count());
     }
 
-    public function testToWKTWithEmptyGeometryCollection()
+    public function test_to_wkt_with_empty_geometry_collection()
     {
         $this->assertEquals('GEOMETRYCOLLECTION()', (new GeometryCollection([]))->toWKT());
     }
 
-    public function testInvalidArgumentExceptionNotArrayGeometries()
+    public function test_invalid_argument_exception_not_array_geometries()
     {
         $this->assertException(
             InvalidArgumentException::class,
@@ -80,14 +80,14 @@ class GeometryCollectionTest extends BaseTestCase
         ]);
     }
 
-    public function testToArray()
+    public function test_to_array()
     {
         $geometryCollection = $this->getGeometryCollection();
 
         $this->assertIsArray($geometryCollection->toArray());
     }
 
-    public function testIteratorAggregate()
+    public function test_iterator_aggregate()
     {
         $geometryCollection = $this->getGeometryCollection();
 
@@ -96,7 +96,7 @@ class GeometryCollectionTest extends BaseTestCase
         }
     }
 
-    public function testArrayAccess()
+    public function test_array_access()
     {
         $linestring = $this->getLineString();
         $point = $this->getPoint();
@@ -130,7 +130,7 @@ class GeometryCollectionTest extends BaseTestCase
         $geometryCollection[] = 1;
     }
 
-    public function testFromJson()
+    public function test_from_json()
     {
         $geometryCollection = GeometryCollection::fromJson('{"type":"FeatureCollection","features":[{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[1,2]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[3,4]}}]}');
         $this->assertInstanceOf(GeometryCollection::class, $geometryCollection);
@@ -140,7 +140,7 @@ class GeometryCollectionTest extends BaseTestCase
         $this->assertEquals(new Point(4, 3), $geometryCollectionPoints[1]);
     }
 
-    public function testInvalidGeoJsonException()
+    public function test_invalid_geo_json_exception()
     {
         $this->assertException(
             \Wildwestriverrider\LaravelMysqlSpatial\Exceptions\InvalidGeoJsonException::class,

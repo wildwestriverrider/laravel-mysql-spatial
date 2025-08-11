@@ -12,11 +12,12 @@ use Wildwestriverrider\LaravelMysqlSpatial\MysqlConnection;
 class ConnectionFactory extends IlluminateConnectionFactory
 {
     /**
-     * @param string $driver
-     * @param \Closure|PDO $connection
-     * @param string $database
-     * @param string $prefix
+     * @param  string  $driver
+     * @param  \Closure|PDO  $connection
+     * @param  string  $database
+     * @param  string  $prefix
      * @return ConnectionInterface
+     *
      * @throws Exception
      * @throws BindingResolutionException
      */

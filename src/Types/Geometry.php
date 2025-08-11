@@ -57,7 +57,7 @@ abstract class Geometry implements \JsonSerializable, GeometryInterface, Jsonabl
             'MULTILINESTRING' => MultiLineString::class,
             'MULTIPOLYGON' => MultiPolygon::class,
             'GEOMETRYCOLLECTION' => GeometryCollection::class,
-            default => throw new UnknownWKTTypeException('Type was ' . $type),
+            default => throw new UnknownWKTTypeException('Type was '.$type),
         };
     }
 

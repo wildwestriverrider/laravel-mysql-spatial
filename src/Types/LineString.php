@@ -62,8 +62,6 @@ class LineString extends PointCollection
 
     /**
      * Convert to GeoJson LineString that is jsonable to GeoJSON.
-     *
-     * @return GeoJsonLineString
      */
     public function jsonSerialize(): GeoJsonLineString
     {

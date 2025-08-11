@@ -69,7 +69,6 @@ class Point extends Geometry
 
     /**
      * @param  $geoJson  \GeoJson\Feature\Feature|string
-     * @return \Wildwestriverrider\LaravelMysqlSpatial\Types\Point
      */
     public static function fromJson($geoJson): Point
     {
@@ -88,8 +87,6 @@ class Point extends Geometry
 
     /**
      * Convert to GeoJson Point that is jsonable to GeoJSON.
-     *
-     * @return GeoJsonPoint
      */
     public function jsonSerialize(): GeoJsonPoint
     {

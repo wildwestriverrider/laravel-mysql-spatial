@@ -34,7 +34,7 @@ abstract class BaseTestCase extends TestCase
         return $app;
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         Mockery::close();
     }
@@ -65,7 +65,6 @@ abstract class BaseTestCase extends TestCase
      * Define environment setup.
      *
      * @param  \Illuminate\Foundation\Application  $app
-     * @return void
      */
     protected function defineEnvironment($app): void
     {
