@@ -209,9 +209,9 @@ class MySqlGrammarTest extends BaseTestCase
 
     /**
      * Get a database connection for testing.
-     * 
-     * @param mixed $connection
-     * @param mixed $table
+     *
+     * @param  mixed  $connection
+     * @param  mixed  $table
      * @return \Illuminate\Database\Connection
      */
     public function getConnection($connection = null, $table = null)
@@ -220,15 +220,18 @@ class MySqlGrammarTest extends BaseTestCase
             $connection = Mockery::mock(MysqlConnection::class);
             $connection->shouldReceive('getSchemaGrammar')->andReturn($this->getGrammar());
             $connection->shouldReceive('getTablePrefix')->andReturn('');
+
             return $connection;
         }
+
         return parent::getConnection($connection, $table);
     }
 
     protected function getGrammar()
     {
-        $grammar = new MySqlGrammar();
+        $grammar = new MySqlGrammar;
         $grammar->setTablePrefix('');
+
         return $grammar;
     }
 }
