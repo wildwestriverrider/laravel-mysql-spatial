@@ -10,13 +10,16 @@ class MySqlGrammar extends IlluminateMySqlGrammar
 {
     const COLUMN_MODIFIER_SRID = 'Srid';
 
-    public function __construct()
-    {
-        // Enable SRID as a column modifier
-        if (! in_array(self::COLUMN_MODIFIER_SRID, $this->modifiers)) {
-            $this->modifiers[] = self::COLUMN_MODIFIER_SRID;
-        }
-    }
+    /**
+     * The possible column modifiers.
+     *
+     * @var string[]
+     */
+    protected $modifiers = [
+        'Unsigned', 'Charset', 'Collate', 'VirtualAs', 'StoredAs', 'Nullable',
+        'Default', 'OnUpdate', 'Invisible', 'Increment', 'Comment', 'After', 'First',
+        'Srid',  // Add SRID support for spatial columns
+    ];
 
     /**
      * Adds a statement to add a geometry column.

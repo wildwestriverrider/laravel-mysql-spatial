@@ -100,10 +100,11 @@ class Blueprint extends IlluminateBlueprint
      *
      * @param  string|array  $columns
      * @param  string  $name
+     * @param  string|null  $operatorClass
      */
-    public function spatialIndex($columns, $name = null): Fluent
+    public function spatialIndex($columns, $name = null, $operatorClass = null): Fluent
     {
-        return $this->indexCommand('spatial', $columns, $name);
+        return $this->indexCommand('spatial', $columns, $name, null, $operatorClass);
     }
 
     /**

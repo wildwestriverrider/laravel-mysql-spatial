@@ -8,7 +8,7 @@ use Illuminate\Database\Grammar;
 use Illuminate\Database\MySqlConnection as IlluminateMySqlConnection;
 use Illuminate\Database\Schema\MySqlBuilder;
 use Wildwestriverrider\LaravelMysqlSpatial\Schema\Builder;
-use Wildwestriverrider\LaravelMysqlSpatial\Schema\Grammars\MySqlGrammar;
+use Wildwestriverrider\LaravelMysqlSpatial\Schema\Grammars\MySqlGrammar as SchemaGrammar;
 
 class MysqlConnection extends IlluminateMySqlConnection
 {
@@ -49,16 +49,8 @@ class MysqlConnection extends IlluminateMySqlConnection
      */
     protected function getDefaultSchemaGrammar()
     {
-        $grammar = new MySqlGrammar;
-        
-        if (method_exists($grammar, 'setConnection')) {
-            $grammar->setConnection($this);
-        }
-
-        // Set the table prefix directly instead of using withTablePrefix
-        $grammar->setTablePrefix($this->tablePrefix);
-        
-        return $grammar;
+        // Follow Laravel's exact pattern but with our custom grammar
+        return new SchemaGrammar($this);
     }
 
     /**

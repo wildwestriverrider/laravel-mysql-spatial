@@ -26,7 +26,8 @@ class BuilderTest extends BaseTestCase
     public function test_returns_correct_blueprint()
     {
         $connection = Mockery::mock(MysqlConnection::class);
-        $connection->shouldReceive('getSchemaGrammar')->once()->andReturn(null);
+        $grammar = Mockery::mock(\Wildwestriverrider\LaravelMysqlSpatial\Schema\Grammars\MySqlGrammar::class);
+        $connection->shouldReceive('getSchemaGrammar')->times(2)->andReturn($grammar);
 
         $mock = Mockery::mock(Builder::class, [$connection]);
         $mock->makePartial()->shouldAllowMockingProtectedMethods();
